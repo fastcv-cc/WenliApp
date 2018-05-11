@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:background="#F9F9FB"
+    android:layout_height="match_parent">
+    <RelativeLayout
+                android:layout_width="match_parent"
+                android:background="#1FBAF3"
+                android:layout_height="55dp">
+
+                <ImageView
+                    android:layout_width="30dp"
+                    android:src="@drawable/img_return"
+                    android:id="@+id/img_return"
+                    android:layout_marginLeft="10dp"
+                    android:layout_centerVertical="true"
+                    android:layout_height="30dp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:id="@+id/tv_return"
+                    android:text="返回"
+                    android:layout_marginLeft="40dp"
+                    android:layout_centerVertical="true"
+                    android:textSize="18sp"
+                    android:textColor="@android:color/white"
+                    android:layout_height="wrap_content" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:text="我的信息"
+                    android:textColor="@android:color/white"
+                    android:textSize="20sp" />
+
+            </RelativeLayout>
+
+    <!--姓名学号-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_marginTop="20dp"
+        android:orientation="vertical"
+        android:background="#FFFFFF"
+        android:layout_height="wrap_content">
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#11000000"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:orientation="horizontal"
+            android:weightSum="3.5"
+            android:layout_height="55dp">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:text="姓名"
+                android:gravity="center_vertical"
+                android:paddingLeft="10dp"
+                android:textSize="18sp"
+                android:layout_height="match_parent" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_weight="2.5"
+                android:gravity="center_vertical"
+                android:id="@+id/tv_stuinfo_name"
+                android:text="王琳"
+                android:textSize="18sp"
+                android:layout_height="match_parent" />
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#11000000"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:orientation="horizontal"
+            android:weightSum="3.5"
+            android:layout_height="55dp">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:text="工号"
+                android:gravity="center_vertical"
+                android:paddingLeft="10dp"
+                android:textSize="18sp"
+                android:layout_height="match_parent" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_weight="2.5"
+                android:gravity="center_vertical"
+                android:id="@+id/tv_stuinfo_id"
+                android:text="000001"
+                android:textSize="18sp"
+                android:layout_height="match_parent" />
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#11000000"/>
+        
+    </LinearLayout>
+
+    <!--系部班级-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_marginTop="20dp"
+        android:orientation="vertical"
+        android:background="#FFFFFF"
+        android:layout_height="wrap_content">
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#11000000"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:orientation="horizontal"
+            android:weightSum="3.5"
+            android:layout_height="55dp">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:text="系部"
+                android:gravity="center_vertical"
+                android:paddingLeft="10dp"
+                android:textSize="18sp"
+                android:layout_height="match_parent" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_weight="2.5"
+                android:gravity="center_vertical"
+                android:id="@+id/tv_stuinfo_department"
+                android:text="机电与信息工程系"
+                android:textSize="18sp"
+                android:layout_height="match_parent" />
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#11000000"/>
+
+    </LinearLayout>
+
+
+</LinearLayout>

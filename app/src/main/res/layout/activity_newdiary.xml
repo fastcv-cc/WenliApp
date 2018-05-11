@@ -1,0 +1,526 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:id="@+id/ll_layout"
+    android:layout_height="match_parent">
+    <RelativeLayout
+                android:layout_width="match_parent"
+                android:background="#1FBAF3"
+                android:layout_height="55dp">
+
+                <ImageView
+                    android:layout_width="30dp"
+                    android:src="@drawable/img_return"
+                    android:id="@+id/img_return"
+                    android:layout_marginLeft="10dp"
+                    android:layout_centerVertical="true"
+                    android:layout_height="30dp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:id="@+id/tv_return"
+                    android:text="返回"
+                    android:layout_marginLeft="40dp"
+                    android:layout_centerVertical="true"
+                    android:textSize="18sp"
+                    android:textColor="@android:color/white"
+                    android:layout_height="wrap_content" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:text="新建周记"
+                    android:textColor="@android:color/white"
+                    android:textSize="20sp" />
+
+        <ImageView
+            android:layout_width="30dp"
+            android:src="@drawable/right"
+            android:id="@+id/img_send"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="10dp"
+            android:layout_centerVertical="true"
+            android:layout_height="30dp" />
+
+            </RelativeLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#F9F9FB"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <!--1/2-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:background="#FFFFFF"
+                android:orientation="vertical">
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="#11000000" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginBottom="5dp"
+                        android:text="室友学习任务完成情况"
+                        android:textSize="18sp" />
+
+                    <RadioGroup
+                        android:id="@+id/diary_study"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="40dp"
+                        android:orientation="horizontal">
+
+                        <RadioButton
+                            android:id="@+id/diary_study_1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:checked="true"
+                            android:text="很好"
+                            android:textColor="#0000FF" />
+
+                        <RadioButton
+                            android:id="@+id/diary_study_2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="一般"
+                            android:textColor="#00C99D" />
+
+                        <RadioButton
+                            android:id="@+id/diary_study_3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="很差"
+                            android:textColor="#FF0000" />
+                    </RadioGroup>
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="#11000000" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:text="室友身体状态"
+                        android:layout_marginBottom="5dp"
+                        android:textSize="18sp" />
+
+                    <RadioGroup
+                        android:id="@+id/diary_heath"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginLeft="40dp"
+                        android:orientation="horizontal">
+
+                        <RadioButton
+                            android:id="@+id/diary_heath_1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:checked="true"
+                            android:text="很好"
+                            android:textColor="#0000FF" />
+
+                        <RadioButton
+                            android:id="@+id/diary_heath_2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="一般"
+                            android:textColor="#00C99D" />
+
+                        <RadioButton
+                            android:id="@+id/diary_heath_3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="很差"
+                            android:textColor="#FF0000" />
+                    </RadioGroup>
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="#11000000" />
+
+            </LinearLayout>
+
+            <!--3/4-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:background="#FFFFFF"
+                android:orientation="vertical">
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="#11000000" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:text="室友情绪状况"
+                        android:layout_marginBottom="5dp"
+                        android:textSize="18sp" />
+
+                    <RadioGroup
+                        android:id="@+id/diary_mood"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginLeft="40dp"
+                        android:orientation="horizontal">
+
+                        <RadioButton
+                            android:id="@+id/diary_mood_1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:checked="true"
+                            android:text="很好"
+                            android:textColor="#0000FF" />
+
+                        <RadioButton
+                            android:id="@+id/diary_mood_2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="一般"
+                            android:textColor="#00C99D" />
+
+                        <RadioButton
+                            android:id="@+id/diary_mood_3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="很差"
+                            android:textColor="#FF0000" />
+                    </RadioGroup>
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="#11000000" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:text="室友异常消费情况"
+                        android:layout_marginBottom="5dp"
+                        android:textSize="18sp" />
+
+                    <RadioGroup
+                        android:id="@+id/diary_consume"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginLeft="40dp"
+                        android:orientation="horizontal">
+
+                        <RadioButton
+                            android:id="@+id/diary_consume_1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:checked="true"
+                            android:text="没有"
+                            android:textColor="#0000FF" />
+
+                        <RadioButton
+                            android:id="@+id/diary_consume_2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="很少"
+                            android:textColor="#00C99D" />
+
+                        <RadioButton
+                            android:id="@+id/diary_consume_3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="很多"
+                            android:textColor="#FF0000" />
+                    </RadioGroup>
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="#11000000" />
+
+            </LinearLayout>
+
+            <!--5/6-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:background="#FFFFFF"
+                android:orientation="vertical">
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="#11000000" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:text="室友彻夜未归情况"
+                        android:layout_marginBottom="5dp"
+                        android:textSize="18sp" />
+
+                    <RadioGroup
+                        android:id="@+id/diary_return"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginLeft="40dp"
+                        android:orientation="horizontal">
+
+                        <RadioButton
+                            android:id="@+id/diary_return_1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:checked="true"
+                            android:text="没有"
+                            android:textColor="#0000FF" />
+
+                        <RadioButton
+                            android:id="@+id/diary_return_2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="很少"
+                            android:textColor="#00C99D" />
+
+                        <RadioButton
+                            android:id="@+id/diary_return_3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="很多"
+                            android:textColor="#FF0000" />
+                    </RadioGroup>
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="#11000000" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:text="室友总体休息情况"
+                        android:layout_marginBottom="5dp"
+                        android:textSize="18sp" />
+
+                    <RadioGroup
+                        android:id="@+id/diary_sleep"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginLeft="40dp"
+                        android:orientation="horizontal">
+
+                        <RadioButton
+                            android:id="@+id/diary_sleep_1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:checked="true"
+                            android:text="很好"
+                            android:textColor="#0000FF" />
+
+                        <RadioButton
+                            android:id="@+id/diary_sleep_2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="一般"
+                            android:textColor="#00C99D" />
+
+                        <RadioButton
+                            android:id="@+id/diary_sleep_3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="很差"
+                            android:textColor="#FF0000" />
+                    </RadioGroup>
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="#11000000" />
+
+            </LinearLayout>
+
+            <!--7/8-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:background="#FFFFFF"
+                android:layout_marginBottom="20dp"
+                android:orientation="vertical">
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="#11000000" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="室友是否有失恋情况"
+                        android:layout_marginBottom="5dp"
+                        android:textSize="18sp" />
+
+                    <RadioGroup
+                        android:id="@+id/diary_lovelose"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginLeft="40dp"
+                        android:orientation="horizontal">
+
+                        <RadioButton
+                            android:id="@+id/diary_lovelose_1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:checked="true"
+                            android:text="有且情绪低落"
+                            android:textColor="#0000FF" />
+
+                        <RadioButton
+                            android:id="@+id/diary_lovelose_2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="有且情绪正常"
+                            android:textColor="#00C99D" />
+
+                        <RadioButton
+                            android:id="@+id/diary_lovelose_3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="无"
+                            android:textColor="#FF0000" />
+                    </RadioGroup>
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="#11000000" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    >
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:textSize="18sp"
+                        android:padding="10dp"
+                        android:text="需要反映或解决的问题"/>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="#11000000" />
+
+                    <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="100dp"
+                        android:id="@+id/diary_text"
+                        android:layout_margin="10dp"
+                        android:inputType="textMultiLine"
+                        android:gravity="left|top"
+                        android:maxLength="120"
+                        android:background="@null"
+                        android:hint="无情况反应"
+                        />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:text="0/120"
+                        android:id="@+id/maxnumber"
+                        android:layout_gravity="right"
+                        android:layout_marginRight="10dp"
+                        android:layout_height="wrap_content" />
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="#11000000" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</LinearLayout>

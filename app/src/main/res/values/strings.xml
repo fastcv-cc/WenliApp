@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">WenliApp</string>
+    <string name="title_activity_main2">文理周记</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_main3">Main3Activity</string>
+    <string name="about">&#160;&#160;&#160;本APP是基于纸质周记本上的内容开发的，纸质周记本的填写与上交批阅过程太过于繁琐，所以采用安卓平台App的形式方便这一过程，由文理学院机电系计科5151开发小组2017年开发!如使用途中有错误请联系此QQ:867220789
+    </string>
+</resources>

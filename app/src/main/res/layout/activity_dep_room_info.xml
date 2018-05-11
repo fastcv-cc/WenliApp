@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:background="#FFFFFF"
+    android:orientation="vertical"
+    android:id="@+id/rl_layout"
+    android:layout_height="match_parent" >
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:background="#1FBAF3"
+        android:layout_height="55dp">
+
+        <ImageView
+            android:layout_width="30dp"
+            android:src="@drawable/img_return"
+            android:id="@+id/img_return"
+            android:layout_marginLeft="10dp"
+            android:layout_centerVertical="true"
+            android:layout_height="30dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:id="@+id/tv_return"
+            android:text="返回"
+            android:layout_marginLeft="40dp"
+            android:layout_centerVertical="true"
+            android:textSize="18sp"
+            android:textColor="@android:color/white"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="寝室成员"
+            android:textColor="@android:color/white"
+            android:textSize="20sp" />
+
+        <ImageView
+            android:layout_width="30dp"
+            android:src="@drawable/img_enter_white"
+            android:id="@+id/img_to"
+            android:layout_marginRight="10dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_height="30dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:id="@+id/tv_to"
+            android:text="周记"
+            android:layout_marginRight="40dp"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:textSize="18sp"
+            android:textColor="@android:color/white"
+            android:layout_height="wrap_content" />
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_height="50dp"
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:background="#FFFFFF"
+        android:gravity="center_vertical"
+        >
+
+    <TextView
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:text="姓名"
+        android:gravity="center"
+        android:textSize="15sp"
+        android:layout_weight="1"
+        />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="学号"
+        android:gravity="center"
+        android:textSize="15sp"
+        android:layout_weight="1"
+        />
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="寝室长"
+        android:textSize="15sp"
+        android:gravity="center"
+        android:layout_weight="1"
+        />
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1sp"
+        android:background="#55000000"
+        />
+
+        <ListView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/stuinfolist"
+            />
+
+    <include
+        android:id="@+id/la_empty"
+        layout="@layout/layout_empty"
+        />
+
+</LinearLayout>

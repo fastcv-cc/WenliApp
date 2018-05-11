@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="select">
+        <item >请选择：</item>
+    </string-array>
+    <string-array name="teacher_function">
+        <item >学生基本信息管理</item>
+    </string-array>
+    <string-array name="student_man">
+        <item >恢复初始密码</item>
+        <item >设置为寝室长</item>
+    </string-array>
+    <string-array name="tea_select">
+        <item >学号</item>
+        <item >姓名</item>
+    </string-array>
+    
+    
+    
+</resources>

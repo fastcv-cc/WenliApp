@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:orientation="horizontal"
+    android:background="#FFFFFF"
+    android:gravity="center_vertical"
+    android:layout_height="50dp">
+
+    <TextView
+        android:layout_height="50dp"
+        android:layout_width="match_parent"
+        android:text="姓名"
+        android:gravity="center"
+        android:id="@+id/item_name"
+        android:textSize="18sp"
+        android:layout_weight="1"
+        />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:text="学号"
+        android:id="@+id/item_cardid"
+        android:gravity="center"
+        android:textSize="18sp"
+        android:layout_weight="1"
+        />
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:text="寝室长"
+        android:id="@+id/item_ishead"
+        android:textSize="18sp"
+        android:gravity="center"
+        android:layout_weight="1"
+        />
+
+</LinearLayout>
