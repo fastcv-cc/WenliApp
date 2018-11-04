@@ -6,7 +6,6 @@ import android.content.Context;
 import android.os.Handler;
 import android.text.format.Time;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -57,7 +56,6 @@ public class FreshListView extends ListView implements
 		measureView(header);
 		headerHeight = header.getMeasuredHeight();
 		topPadding(-headerHeight);
-		Log.i("tag", "headerHeight=" + headerHeight);
 		this.addHeaderView(header);
 		this.setOnScrollListener(this);
 	}
@@ -70,7 +68,6 @@ public class FreshListView extends ListView implements
 			if (fristVisibleItem == 0) {
 				isRemark = true;
 				startY = (int) ev.getY();
-				Log.e("startY", startY+"");
 			}
 		}
 			break;
@@ -103,15 +100,12 @@ public class FreshListView extends ListView implements
 			return;
 		}
 		int tempY = (int) ev.getY();
-
 		int space = tempY - startY;
-		Log.e("space", space+"");
 		int topPadding = space - headerHeight;
 		switch (state) {
 		case NONE: {
 			if (space > 0) {
 				state = PULL;
-				Log.e("state", state+"");
 				reflashViewByState();
 				
 			}
@@ -120,12 +114,9 @@ public class FreshListView extends ListView implements
 
 		case PULL: {
 			topPadding(topPadding);
-			Log.e("space pull", space+"");
-			Log.e("headerHeight", headerHeight+"");
 			if (space > headerHeight + 50
 					&& scrollState == SCROLL_STATE_TOUCH_SCROLL) {
 				state = RELESE;
-				Log.e("state", state+"");
 				reflashViewByState();
 			}
 		}
@@ -134,11 +125,9 @@ public class FreshListView extends ListView implements
 			topPadding(topPadding);
 			if (space < headerHeight + 50) {
 				state = PULL;
-				Log.e("state", state+"");
 				reflashViewByState();
 			} else if (space <= 0) {
 				state = NONE;
-				Log.e("state", state+"");
 				isRemark = false;
 				reflashViewByState();
 			}
@@ -178,20 +167,18 @@ public class FreshListView extends ListView implements
 
 	public void onScrollStateChanged(AbsListView view, int scrollState) {
 		this.scrollState = scrollState;
-		Log.e("scrollState", scrollState+"");
 	}
 
 	public void onScroll(AbsListView view, int fristVisibleItem,
 			int visibleItemCount, int totalItemCount) {
 		this.fristVisibleItem = fristVisibleItem;
-//		Log.e("fristVisibleItem", fristVisibleItem+"");
 	}
 
 
 	private void reflashViewByState() {
-		TextView tip = (TextView) header.findViewById(R.id.tip);
-		ImageView arrow = (ImageView) header.findViewById(R.id.arrow);
-		ProgressBar progressBar = (ProgressBar) header
+		TextView tip = header.findViewById(R.id.tip);
+		ImageView arrow =  header.findViewById(R.id.arrow);
+		ProgressBar progressBar =  header
 				.findViewById(R.id.progress);
 		RotateAnimation anim = new RotateAnimation(0, 180,
 				RotateAnimation.RELATIVE_TO_SELF, 0.5f,

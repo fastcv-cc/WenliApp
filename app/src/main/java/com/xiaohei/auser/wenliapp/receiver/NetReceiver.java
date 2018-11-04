@@ -4,10 +4,9 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.net.ConnectivityManager;
-import android.widget.Toast;
 
-import com.xiaohei.auser.wenliapp.entity.NetEvent;
-import com.xiaohei.auser.wenliapp.utils.NetUtils;
+import com.xiaohei.auser.wenliapp.wenlievent.NetEvent;
+import com.xiaohei.auser.wenliapp.utils.NetStateUtils;
 
 import org.greenrobot.eventbus.EventBus;
 
@@ -21,7 +20,7 @@ public class NetReceiver extends BroadcastReceiver {
     public void onReceive(Context context, Intent intent) {
         String action = intent.getAction();
         if (ConnectivityManager.CONNECTIVITY_ACTION.equals(action)) {
-            boolean isConnected = NetUtils.isNetworkConnected(context);
+            boolean isConnected = NetStateUtils.isNetworkConnected(context);
             if (isConnected) {
                 EventBus.getDefault().post(new NetEvent(true));
             } else {

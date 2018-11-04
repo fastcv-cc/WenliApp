@@ -9,7 +9,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.xiaohei.auser.wenliapp.R;
-import com.xiaohei.auser.wenliapp.entity.vo.ClassRooms;
+import com.xiaohei.auser.wenliapp.wenlientity.NewClassRooms;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,9 +22,9 @@ import java.util.List;
 public class ClassExpandableListViewAdapter extends BaseExpandableListAdapter {
 
     private Context mContext;
-    private List<ClassRooms> class_dr_list = new ArrayList<>();
+    private List<NewClassRooms> class_dr_list = new ArrayList<>();
 
-    public ClassExpandableListViewAdapter(Context context,List<ClassRooms> class_dr_list) {
+    public ClassExpandableListViewAdapter(Context context,List<NewClassRooms> class_dr_list) {
         this.mContext = context;
         this.class_dr_list = class_dr_list;
     }
@@ -36,7 +36,10 @@ public class ClassExpandableListViewAdapter extends BaseExpandableListAdapter {
 
     @Override
     public int getChildrenCount(int groupPosition) {
-        return class_dr_list.get(groupPosition).getRoomsVoList().size();
+        if (class_dr_list.get(groupPosition).getRoomVoList() == null)
+            return 0;
+        else
+        return class_dr_list.get(groupPosition).getRoomVoList().size();
     }
 
     @Override
@@ -46,8 +49,8 @@ public class ClassExpandableListViewAdapter extends BaseExpandableListAdapter {
 
     @Override
     public Object getChild(int groupPosition, int childPosition) {
-        return class_dr_list.get(groupPosition).getRoomsVoList().get(childPosition)
-                .getRoomName();
+        return class_dr_list.get(groupPosition).getRoomVoList().get(childPosition)
+                .getName();
     }
 
     @Override
@@ -95,10 +98,11 @@ public class ClassExpandableListViewAdapter extends BaseExpandableListAdapter {
         } else {
             itemHolder = (ItemHolder) convertView.getTag();
         }
-            itemHolder.txt.setText(class_dr_list.get(groupPosition).getRoomsVoList()
+            itemHolder.txt.setText(
+                    class_dr_list.get(groupPosition).getRoomVoList()
                     .get(childPosition).getBuildName() +
-                    class_dr_list.get(groupPosition).getRoomsVoList()
-                            .get(childPosition).getRoomName());
+                    class_dr_list.get(groupPosition).getRoomVoList()
+                            .get(childPosition).getName());
         itemHolder.img.setBackgroundResource(R.drawable.img_depart);
         return convertView;
     }

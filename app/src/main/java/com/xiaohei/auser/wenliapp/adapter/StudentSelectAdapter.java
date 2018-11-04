@@ -9,7 +9,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.xiaohei.auser.wenliapp.R;
-import com.xiaohei.auser.wenliapp.entity.SelectEntity;
+import com.xiaohei.auser.wenliapp.wenlientity.SelectEntity;
 
 import java.util.ArrayList;
 import java.util.List;

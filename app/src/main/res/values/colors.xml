@@ -7,4 +7,5 @@
     <color name="white">#ffffff</color>
     <color name="transparent">#00000000</color>
     <color name="content">#555555</color>
+    <color name="login_bg">#E3E4E8</color>
 </resources>

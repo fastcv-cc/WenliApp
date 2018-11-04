@@ -2,14 +2,11 @@ package com.xiaohei.auser.wenliapp.studentActivity;
 
 import android.app.Dialog;
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.content.IntentFilter;
 import android.net.ConnectivityManager;
 import android.os.Bundle;
-import android.support.design.widget.Snackbar;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.AdapterView;
@@ -19,54 +16,54 @@ import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import com.xiaohei.auser.wenliapp.Dao.StudentDao;
 import com.xiaohei.auser.wenliapp.R;
+import com.xiaohei.auser.wenliapp.SuperActivity;
 import com.xiaohei.auser.wenliapp.adapter.StudentSelectAdapter;
 import com.xiaohei.auser.wenliapp.adapter.StudentWeekAdapter;
-import com.xiaohei.auser.wenliapp.basedata.MyLog;
-import com.xiaohei.auser.wenliapp.basedata.StuSelectData;
-import com.xiaohei.auser.wenliapp.dao.StudentDao;
-import com.xiaohei.auser.wenliapp.dialog.ExistDialog;
-import com.xiaohei.auser.wenliapp.dialog.ShowDialog;
-import com.xiaohei.auser.wenliapp.entity.NetEvent;
-import com.xiaohei.auser.wenliapp.entity.Rooms;
-import com.xiaohei.auser.wenliapp.entity.WeeksText;
-import com.xiaohei.auser.wenliapp.intent.IntentUtil;
+import com.xiaohei.auser.wenliapp.basedata.BaseData;
+import com.xiaohei.auser.wenliapp.dialog.XhDialog;
+import com.xiaohei.auser.wenliapp.dialog.XhSnackBar;
+import com.xiaohei.auser.wenliapp.wenlievent.NetEvent;
+import com.xiaohei.auser.wenliapp.minterface.XhHttpInterface;
+import com.xiaohei.auser.wenliapp.net.WenLiURL;
+import com.xiaohei.auser.wenliapp.net.XhOkHttps;
+import com.xiaohei.auser.wenliapp.utils.IntentUtil;
 import com.xiaohei.auser.wenliapp.login.LoginActivity;
-import com.xiaohei.auser.wenliapp.net.StudentUrl;
 import com.xiaohei.auser.wenliapp.normalActivity.SettingActivity;
 import com.xiaohei.auser.wenliapp.receiver.NetReceiver;
-import com.xiaohei.auser.wenliapp.sp.StudentSpUtils;
-import com.xiaohei.auser.wenliapp.utils.JsonReturnData;
-import com.xiaohei.auser.wenliapp.utils.NetUtils;
+import com.xiaohei.auser.wenliapp.sp.SpConstants;
+import com.xiaohei.auser.wenliapp.sp.XhSp;
+import com.xiaohei.auser.wenliapp.utils.NetStateUtils;
+import com.xiaohei.auser.wenliapp.wenlientity.NewWeektext;
+import com.xiaohei.auser.wenliapp.wenlientity.Result;
+import com.xiaohei.auser.wenliapp.wenlientity.RoomWIthHeadID;
 import com.xiaohei.auser.wenliapp.widget.FreshListView;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
-import java.io.IOException;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import okhttp3.Call;
-import okhttp3.Callback;
-import okhttp3.FormBody;
-import okhttp3.OkHttpClient;
-import okhttp3.Request;
-import okhttp3.RequestBody;
-import okhttp3.Response;
 
 /**
  * Created by Auser on 2018/4/16.
  * 学生的主界面
+ * 功能要求：
+ * 1、可以看到历史周记记录
+ * 2、可以发送周记
+ * 3、可以查看自己的信息
+ * 4、可以修改账户密码
+ * 5、可以反馈使用意见
  */
 
-public class StudentMainActivity extends AppCompatActivity implements AdapterView.OnItemClickListener,
+public class StudentMainActivity extends SuperActivity implements AdapterView.OnItemClickListener,
         View.OnClickListener ,FreshListView.IReflashListener, View.OnLongClickListener {
 
     @BindView(R.id.ll_layout)
@@ -89,9 +86,8 @@ public class StudentMainActivity extends AppCompatActivity implements AdapterVie
     RelativeLayout netinfo;
 
     private Dialog mdialog;
-
-    public List<WeeksText> list_weeks = new ArrayList<>();
-    private int headid = 0;
+    public List<NewWeektext> list_weeks = new ArrayList<>();
+    private NetReceiver mReceiver;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -101,116 +97,21 @@ public class StudentMainActivity extends AppCompatActivity implements AdapterVie
         init();
         initReceive();
         EventBus.getDefault().register(this);
-        getWeek(StudentUrl.getmWeekUrl(),0);
+        getWeek(WenLiURL.STUDENT_GET_WEEKTEXT+StudentDao.getStudent().getRoomId(),0);
     }
 
-    public void getWeek(String url, final int mode) {
-        list_weeks.clear();
-        mdialog.show();
-        RequestBody requestBody = new FormBody.Builder().add("roomId",StudentDao.getStudentRoomId(StudentMainActivity.this,
-                StudentSpUtils.getStudentId(StudentMainActivity.this))+"").build();
-        Request request = new Request.Builder().url(url).post(requestBody).build();
-        OkHttpClient okHttpClient = new OkHttpClient();
-        Call call = okHttpClient.newCall(request);
-        call.enqueue(new Callback() {
-            @Override
-            public void onFailure(Call call, IOException e) {
-                runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        mdialog.dismiss();
-                        showResult("服务器连接异常!");
-                    }
-                });
-            }
-
-            @Override
-            public void onResponse(Call call, final Response response) throws IOException {
-                mdialog.dismiss();
-                String str= null;
-                try {
-                    str = response.body().string();
-                    Gson gson = new Gson();
-                    Type mtype = new TypeToken<JsonReturnData<List<WeeksText>>>() {
-                    }.getType();
-                    JsonReturnData jsonReturnData = gson.fromJson(str, mtype);
-                    int code = jsonReturnData.getCode();
-                    if(code == 300){
-                        showResult("请求数据失败!");
-                    }
-                    else if(code == 301){
-                        showResult("服务器数据为空!");
-                    }
-                    else if(code == 200){
-                        list_weeks = (List<WeeksText>) jsonReturnData.getData();
-                    }
-                } catch (Exception e) {
-                    e.printStackTrace();
-                    showResult("服务器数据解析异常!");
-                } finally {
-                    MyLog.Log(StudentMainActivity.this,"Login_Student_result",str);
-                    runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
-                            if(mode == 1){
-                                listview_week.reflashComplete(true);
-                            }
-                            listview_week.setAdapter(new StudentWeekAdapter(StudentMainActivity.this, list_weeks));
-                        }
-                    });
-                }
-            }
-        });
-
-    }
-
-    private void showResult(String mes) {
-        Snackbar.make(layout, mes, Snackbar.LENGTH_SHORT)
-                .setDuration(Snackbar.LENGTH_SHORT).show();
-    }
-
-    private void initReceive() {
-        NetReceiver mReceiver = new NetReceiver();
-        IntentFilter mFilter = new IntentFilter();
-        mFilter.addAction(ConnectivityManager.CONNECTIVITY_ACTION);
-        registerReceiver(mReceiver, mFilter);
-    }
-
-    @Subscribe(threadMode = ThreadMode.MAIN)
-    public void onEventMainThread(NetEvent event) {
-        setNetState(event.isNet());
-    }
-
-    @Subscribe
-    public void onEventFresh(NetEvent event) {
-        if(event.isNet()){
-            getWeek(StudentUrl.getmWeekUrl(),0);
-        }
-    }
-
-    public void setNetState(boolean netState) {
-
-        if (netinfo != null) {
-            netinfo.setVisibility(netState ? View.GONE : View.VISIBLE);
-            netinfo.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View arg0) {
-                    NetUtils.startToSettings(StudentMainActivity.this);
-                }
-            });
-        }
-    }
-
+    //初始化组件信息
     private void init() {
-        mdialog = ShowDialog.showLoadingDialog(StudentMainActivity.this,"正在加载...");
+        mdialog = XhDialog.showLoadingDialog(StudentMainActivity.this,"正在加载...");
         toolbar.setTitle("");
         setSupportActionBar(toolbar);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.setDrawerListener(toggle);
         toggle.syncState();
-        tv_name.setText(StudentDao.getStudentName(StudentMainActivity.this,StudentSpUtils.getStudentId(StudentMainActivity.this)));
-        list_select.setAdapter(new StudentSelectAdapter(StudentMainActivity.this, StuSelectData.getSelectList()));
+
+        tv_name.setText(StudentDao.getStudent().getName());
+        list_select.setAdapter(new StudentSelectAdapter(StudentMainActivity.this, BaseData.getSelectListForStudent()));
         list_select.setOnItemClickListener(this);
         listview_week.setInterface(this);
         listview_week.setAdapter(new StudentWeekAdapter(StudentMainActivity.this, list_weeks));
@@ -227,149 +128,201 @@ public class StudentMainActivity extends AppCompatActivity implements AdapterVie
         img_add.setOnClickListener(this);
     }
 
-    @Override
-    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
-        switch (position){
-            case 0:{
-                /**
-                 * 我的信息  ok
-                 */
-                IntentUtil.MystartActivity(StudentMainActivity.this,StudentInfoActivity.class);
-            }
-            break;
-            case 1:{
-                /**
-                 * 新建周记
-                 */
-                NewDiary();
-            }
-            break;
-            case 2:{
-                /**
-                 * 修改密码
-                 */
-                IntentUtil.MystartActivity(StudentMainActivity.this,StudentChangePasswordActivity.class,2);
-            }
-            break;
-            case 3:{
-                /**
-                 * 查询成绩
-                 */
-                IntentUtil.startWeb(StudentMainActivity.this);
-            }
-            break;
-            case 4:{
-                /**
-                 * 退出登录
-                 */
-                IntentUtil.startActivtyWithFinish(StudentMainActivity.this, LoginActivity.class);
-            }
-            break;
-            case 5:{
-                /**
-                 * 设置界面
-                 */
-                IntentUtil.MystartActivity(StudentMainActivity.this, SettingActivity.class);
-            }
-            break;
-            default:{
-
-            }
-        }
-    }
-
-    @Override
-    public void onClick(View v) {
-        /**
-         * 新建周记
-         */
-        NewDiary();
-    }
-
-    private void NewDiary() {
-        getHeadID();
-    }
-
-    private void getHeadID() {
-        mdialog.show();
-        RequestBody requestBody = new FormBody.Builder().add("roomId",StudentDao.getStudentRoomId(StudentMainActivity.this,
-                StudentSpUtils.getStudentId(StudentMainActivity.this))+"").build();
-        Request request = new Request.Builder().url(StudentUrl.getHeadUrl()).post(requestBody).build();
-        OkHttpClient okHttpClient = new OkHttpClient();
-        Call call = okHttpClient.newCall(request);
-        call.enqueue(new Callback() {
+    //得到该寝室的所有周记信息  ok
+    public void getWeek(String url, final int mode) {
+        list_weeks.clear();
+        Type mtype = new TypeToken<Result<List<NewWeektext>>>() {
+        }.getType();
+        XhOkHttps.GetRequest(url, XhSp.getSharedPreferencesForString(StudentMainActivity.this, SpConstants.TOKEN), mtype, new XhHttpInterface() {
             @Override
-            public void onFailure(Call call, IOException e) {
+            public void complied(Result result) {
+                int code = result.getCode();
+                if(code == 200){
+                    list_weeks = (List<NewWeektext>) result.getResult();
+                    if(list_weeks.size() == 0)
+                        XhSnackBar.showResult(layout,"你们寝室真懒，居然还没有写过周记");
+                }else if(code == 888){
+                     XhDialog.DialogNoCancleWithListener(StudentMainActivity.this, "提示", "账号密码已过期，请重新登录！", new DialogInterface.OnClickListener() {
+                         @Override
+                         public void onClick(DialogInterface dialogInterface, int i) {
+                             exit();
+                             XhSp.setSharedPreferences(StudentMainActivity.this, SpConstants.TOKEN,"");
+                             IntentUtil.startActivtyWithFinish(StudentMainActivity.this, LoginActivity.class);
+                         }
+                     });
+                }else if(code == 500){
+                    XhSnackBar.showResultWithAction(layout, "服务器跑丢了", "点我追回", new XhSnackBar.Action() {
+                        @Override
+                        public void actionMethod() {
+                            getWeek(WenLiURL.STUDENT_GET_WEEKTEXT+StudentDao.getStudent().getRoomId(),0);
+                        }
+                    });
+                }
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        mdialog.dismiss();
-                        showResult("服务器连接异常!");
+                        if(mode == 1){
+                            listview_week.reflashComplete(true);
+                        }
+                        listview_week.setAdapter(new StudentWeekAdapter(StudentMainActivity.this, list_weeks));
                     }
                 });
             }
 
             @Override
-            public void onResponse(Call call, final Response response) throws IOException {
-                mdialog.dismiss();
-                String str= null;
-                try {
-                    str = response.body().string();
-                    Gson gson = new Gson();
-                    Type mtype = new TypeToken<JsonReturnData<Rooms>>() {
-                    }.getType();
-                    JsonReturnData jsonReturnData = gson.fromJson(str, mtype);
-                    int code = jsonReturnData.getCode();
-                    if(code == 300){
-                        showResult("请求数据失败!");
-                    }
-                    else if(code == 200){
-                        Rooms rooms = (Rooms) jsonReturnData.getData();
-                        if(rooms != null && rooms.getStudentId() != null)
-                        headid = rooms.getStudentId();
-                        if(headid == StudentSpUtils.getStudentId(StudentMainActivity.this)){
-                            IntentUtil.MystartActivity(StudentMainActivity.this,NewDiaryActivity.class);
-                        }else{
-                            showResult("您还不是寝室长！");
-                        }
-                    }
-                } catch (Exception e) {
-                    e.printStackTrace();
-                    showResult("服务器数据解析异常!");
-                } finally {
-                    MyLog.Log(StudentMainActivity.this,"Login_Student_result",str);
+            public void fail() {
+                if(mode == 1){
+                    listview_week.reflashComplete(true);
                 }
+                mdialog.dismiss();
+                XhSnackBar.showResult(layout,"服务器连接异常!");
             }
         });
     }
 
-    @Override
-    public void onReflash() {
-        getWeek(StudentUrl.getmWeekUrl(),1);
+    //初始化网络变化监测广播
+    private void initReceive() {
+        mReceiver = new NetReceiver();
+        IntentFilter mFilter = new IntentFilter();
+        mFilter.addAction(ConnectivityManager.CONNECTIVITY_ACTION);
+        registerReceiver(mReceiver, mFilter);
     }
 
-    @Override
-    public boolean onLongClick(View v) {
-       getWeek(StudentUrl.getmWeekUrl(),0);
-        return false;
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onEventMainThread(NetEvent event) {
+        setNetState(event.isNet());
     }
 
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if(requestCode == 2 && resultCode == 2){
-            IntentUtil.MystartActivity(StudentMainActivity.this,LoginActivity.class);
-            finish();
+    @Subscribe
+    public void onEventFresh(NetEvent event) {
+        if(event.isNet()){
+            getWeek(WenLiURL.STUDENT_GET_WEEKTEXT+StudentDao.getStudent().getRoomId(),0);
         }
     }
 
+    public void setNetState(boolean netState) {
+        if (netinfo != null) {
+            netinfo.setVisibility(netState ? View.GONE : View.VISIBLE);
+            netinfo.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View arg0) {
+                    NetStateUtils.startToSettings(StudentMainActivity.this);
+                }
+            });
+        }
+    }
+
+    //功能选项
     @Override
-    public void onBackPressed() {
-        ExistDialog.showExist(StudentMainActivity.this, new DialogInterface.OnClickListener() {
+    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+        switch (position){
+            case 0:   //我的信息
+                IntentUtil.MystartActivity(StudentMainActivity.this,StudentInfoActivity.class);
+            break;
+            case 1:   //新建周记
+                getHeadID(WenLiURL.STUDENT_GET_HEADID+StudentDao.getStudent().getRoomId());
+            break;
+            case 2:   //修改密码
+                IntentUtil.MystartActivity(StudentMainActivity.this,StudentChangePasswordActivity.class);
+            break;
+            case 3:   //查询成绩
+                IntentUtil.startWeb(StudentMainActivity.this);
+            break;
+            case 4:   //退出登录
+            {
+                XhSp.setSharedPreferences(StudentMainActivity.this, SpConstants.TOKEN,"");
+                IntentUtil.startActivtyWithFinish(StudentMainActivity.this, LoginActivity.class);
+            }
+            break;
+            case 5:   //设置界面
+                IntentUtil.MystartActivity(StudentMainActivity.this, SettingActivity.class);
+            break;
+        }
+    }
+
+    //组件的点击事件
+    @Override
+    public void onClick(View v) {
+        getHeadID(WenLiURL.STUDENT_GET_HEADID+StudentDao.getStudent().getRoomId());
+    }
+
+    //得到寝室长ID的请求
+    private void getHeadID(String url) {
+        mdialog.show();
+        Type mtype = new TypeToken<Result<RoomWIthHeadID>>() {
+        }.getType();
+        XhOkHttps.GetRequest(url, XhSp.getSharedPreferencesForString(StudentMainActivity.this, SpConstants.TOKEN), mtype, new XhHttpInterface() {
             @Override
-            public void onClick(DialogInterface dialog, int which) {
-                System.exit(0);
+            public void complied(Result result) {
+                mdialog.dismiss();
+                int code = result.getCode();
+                if(code == 200){
+                    RoomWIthHeadID rooms = (RoomWIthHeadID) result.getResult();
+                    if(rooms.getStudentId() != null) {
+                        if (rooms.getStudentId().equals(StudentDao.getStudent().getStudentid())) {
+                            IntentUtil.MystartActivity(StudentMainActivity.this, NewDiaryActivity.class,1);
+                        }else{
+                            XhSnackBar.showResult(layout,"您还不是寝室长！");
+                        }
+                    }else{
+                        XhSnackBar.showResult(layout,"您还不是寝室长！");
+                    }
+                }else if(code == 888){
+                    XhDialog.DialogNoCancleWithListener(StudentMainActivity.this, "提示", "账号密码已过期，请重新登录！", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            exit();
+                            XhSp.setSharedPreferences(StudentMainActivity.this, SpConstants.TOKEN,"");
+                            IntentUtil.startActivtyWithFinish(StudentMainActivity.this, LoginActivity.class);
+                        }
+                    });
+                }else if(code == 500){
+                    XhSnackBar.showResultWithAction(layout, "服务器跑丢了", "点我追回", new XhSnackBar.Action() {
+                        @Override
+                        public void actionMethod() {
+                            getWeek(WenLiURL.STUDENT_GET_WEEKTEXT+StudentDao.getStudent().getRoomId(),0);
+                        }
+                    });
+                }
+            }
+
+            @Override
+            public void fail() {
+                mdialog.dismiss();
+                XhSnackBar.showResultWithAction(layout, "服务器跑丢了", "点我追回", new XhSnackBar.Action() {
+                    @Override
+                    public void actionMethod() {
+                        getWeek(WenLiURL.STUDENT_GET_WEEKTEXT+StudentDao.getStudent().getRoomId(),0);
+                    }
+                });
             }
         });
     }
+
+    //刷新时调用的接口
+    @Override
+    public void onReflash() {
+        getWeek(WenLiURL.STUDENT_GET_WEEKTEXT+StudentDao.getStudent().getRoomId(),1);
+    }
+
+    //长按空白屏幕刷新
+    @Override
+    public boolean onLongClick(View v) {
+        getWeek(WenLiURL.STUDENT_GET_WEEKTEXT+StudentDao.getStudent().getRoomId(),0);
+        return false;
+    }
+
+    //按下返回键的操作
+    @Override
+    public void onBackPressed() {
+        BackExit();
+    }
+
+    //注销广播信息
+    @Override
+    protected void onDestroy() {
+        this.unregisterReceiver(mReceiver);
+        super.onDestroy();
+    }
+
 }

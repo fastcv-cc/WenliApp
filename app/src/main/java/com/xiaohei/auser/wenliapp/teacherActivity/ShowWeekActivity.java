@@ -1,57 +1,49 @@
 package com.xiaohei.auser.wenliapp.teacherActivity;
 
-import android.app.Activity;
 import android.app.Dialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.design.widget.Snackbar;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.xiaohei.auser.wenliapp.R;
-import com.xiaohei.auser.wenliapp.basedata.MyLog;
-import com.xiaohei.auser.wenliapp.dialog.NormalDialog;
-import com.xiaohei.auser.wenliapp.dialog.ShowDialog;
-import com.xiaohei.auser.wenliapp.entity.WeeksText;
-import com.xiaohei.auser.wenliapp.entity.vo.WeeksTextVo;
-import com.xiaohei.auser.wenliapp.net.TeacherUrl;
-import com.xiaohei.auser.wenliapp.utils.JsonReturnData;
+import com.xiaohei.auser.wenliapp.SuperActivity;
+import com.xiaohei.auser.wenliapp.dialog.XhDialog;
+import com.xiaohei.auser.wenliapp.dialog.XhSnackBar;
+import com.xiaohei.auser.wenliapp.wenlievent.WeekEvent;
+import com.xiaohei.auser.wenliapp.minterface.XhHttpInterface;
+import com.xiaohei.auser.wenliapp.net.WenLiURL;
+import com.xiaohei.auser.wenliapp.net.XhOkHttps;
+import com.xiaohei.auser.wenliapp.sp.SpConstants;
+import com.xiaohei.auser.wenliapp.sp.XhSp;
 import com.xiaohei.auser.wenliapp.utils.Trans;
+import com.xiaohei.auser.wenliapp.wenlientity.NewWeektext;
+import com.xiaohei.auser.wenliapp.wenlientity.Result;
 
-import java.io.IOException;
+import org.greenrobot.eventbus.EventBus;
+
 import java.lang.reflect.Type;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import butterknife.OnClick;
-import okhttp3.Call;
-import okhttp3.Callback;
 import okhttp3.FormBody;
-import okhttp3.OkHttpClient;
-import okhttp3.Request;
-import okhttp3.RequestBody;
-import okhttp3.Response;
 
 /**
  * Created by Auser on 2018/4/23.
  * 用于教师展示周记历史的界面
  */
 
-public class ShowWeekActivity extends Activity implements View.OnClickListener, TextWatcher {
+public class ShowWeekActivity extends SuperActivity implements View.OnClickListener, TextWatcher {
 
-    @BindView(R.id.img_return)
-    ImageView img_return;
-    @BindView(R.id.tv_return)
-    TextView tv_return;
+    @BindView(R.id.ly_return)
+    RelativeLayout ly_return;
     @BindView(R.id.rl_layout)
     RelativeLayout layout;
 
@@ -79,11 +71,11 @@ public class ShowWeekActivity extends Activity implements View.OnClickListener, 
     ImageView send;
     @BindView(R.id.maxnumber)
     TextView textView_maxnumber;
+    @BindView(R.id.img_warn)
+    ImageView warn;
 
-    private WeeksText week;
-    private WeeksTextVo weeksTextVo;
+    private NewWeektext week;
     private Dialog mdialog;
-    private int flag;
     private String teachersReturnText;
     private int index;
 
@@ -93,139 +85,134 @@ public class ShowWeekActivity extends Activity implements View.OnClickListener, 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_teacher_showweek);
         ButterKnife.bind(this);
-        flag = getIntent().getExtras().getInt("flag");
-        mdialog = ShowDialog.showLoadingDialog(ShowWeekActivity.this,"正在发送...");
+        week = (NewWeektext) getIntent().getExtras().getSerializable("week");
+        init();
+    }
+
+    private void init() {
+        ly_return.setOnClickListener(this);
+        mdialog = XhDialog.showLoadingDialog(ShowWeekActivity.this,"正在发送...");
         week_text.addTextChangedListener(this);
-        if(flag == 1){
-            week = (WeeksText) getIntent().getExtras().getSerializable("week");
-            initview();
-        }else if(flag ==2){
-            weeksTextVo = (WeeksTextVo) getIntent().getExtras().getSerializable("week");
-            initviewvo();
-        }
+        send.setOnClickListener(this);
+        warn.setOnClickListener(this);
+        initview();
     }
 
-    private void showResult(String mes) {
-        Snackbar.make(layout, mes, Snackbar.LENGTH_SHORT)
-                .setDuration(Snackbar.LENGTH_SHORT).show();
-    }
-
-    private void initviewvo() {
-        week_time.setText(weeksTextVo.getCreateTime());
-        week_time.setFocusable(true);
-        week_time.setFocusableInTouchMode(true);
-        week_time.requestFocus();
-        week_studycondition.setText(Trans.getStudy(weeksTextVo.getStudy()));
-        week_heathcondition.setText(Trans.getHeath(weeksTextVo.getHealth()));
-        week_returncondition.setText(Trans.getReturn(weeksTextVo.getReturnHome()));
-        week_sleepcondition.setText(Trans.getSleep(weeksTextVo.getSleepCondition()));
-        week_moodcondition.setText(Trans.getMood(weeksTextVo.getMood()));
-        week_consumecondition.setText(Trans.getConsume(weeksTextVo.getConsume()));
-        week_lovelosecondition.setText(Trans.getLoveLose(weeksTextVo.getLoveLose()));
-        week_conditiontext.setText(weeksTextVo.getConditionText());
-        week_text.setText(weeksTextVo.getTeachersReturnText());
-        if(weeksTextVo.getTeachersReturnText() != null){
-            index = weeksTextVo.getConditionText().length();
-            textView_maxnumber.setText(index +"/120");
-            send.setVisibility(View.GONE);
-        }else{
-            send.setVisibility(View.VISIBLE);
-        }
-        img_return.setOnClickListener(this);
-        tv_return.setOnClickListener(this);
-    }
 
     private void initview() {
         week_time.setText(week.getCreateTime());
         week_time.setFocusable(true);
         week_time.setFocusableInTouchMode(true);
         week_time.requestFocus();
-        week_studycondition.setText(Trans.getStudy(week.getStudy()));
-        week_heathcondition.setText(Trans.getHeath(week.getHealth()));
-        week_returncondition.setText(Trans.getReturn(week.getReturnHome()));
-        week_sleepcondition.setText(Trans.getSleep(week.getSleepCondition()));
-        week_moodcondition.setText(Trans.getMood(week.getMood()));
-        week_consumecondition.setText(Trans.getConsume(week.getConsume()));
-        week_lovelosecondition.setText(Trans.getLoveLose(week.getLoveLose()));
+        week_studycondition.setText(Trans.getStatusName(week.getStudyStatus()));
+        week_heathcondition.setText(Trans.getStatusName(week.getHealthStatus()));
+        week_returncondition.setText(Trans.getStatusName(week.getReturnRoomStatus()));
+        week_sleepcondition.setText(Trans.getStatusName(week.getSleepStatus()));
+        week_moodcondition.setText(Trans.getStatusName(week.getMoodStatus()));
+        week_consumecondition.setText(Trans.getStatusName(week.getConsumeStatus()));
+        week_lovelosecondition.setText(Trans.getStatusName(week.getLoveStatus()));
         week_conditiontext.setText(week.getConditionText());
-        week_text.setText(week.getTeachersReturnText());
-        if(week.getTeachersReturnText() != null){
+        if(week.getStatus() == 1 || week.getStatus() == 2){
+            week_text.setText(week.getTeacherReturnText());
             index = week.getConditionText().length();
             textView_maxnumber.setText(index +"/120");
             send.setVisibility(View.GONE);
+            warn.setVisibility(View.GONE);
         }else{
             send.setVisibility(View.VISIBLE);
         }
-        img_return.setOnClickListener(this);
-        tv_return.setOnClickListener(this);
     }
 
     @Override
     public void onClick(View v) {
-        finish();
-    }
-
-    @OnClick(R.id.img_send)
-    public void Submit(View v){
-        teachersReturnText = week_text.getText().toString();
-        if(flag == 1){
-            sendReturnText(TeacherUrl.sendReturnText(),week.getWeekTextId());
-        }else if(flag ==2){
-            sendReturnText(TeacherUrl.sendReturnText(),weeksTextVo.getWeekTextId());
+        switch (v.getId()){
+            case R.id.ly_return:
+                finish();
+                break;
+            case R.id.img_send:{
+                teachersReturnText = week_text.getText().toString();
+                sendReturnText(WenLiURL.TEACHER_RETURN_TEXT,week.getId(),teachersReturnText);
+            }
+            break;
+            case R.id.img_warn:{
+                XhDialog.DialogWithListener(ShowWeekActivity.this, "提示", "是否确认发送异常信息！！", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        SendWarnMes();
+                    }
+                });
+            }
+            break;
         }
     }
 
-    private void sendReturnText(String url,int weekid) {
+    private void SendWarnMes() {
+        //发送短信
         mdialog.show();
-        RequestBody requestBody = new FormBody.Builder()
-                .add("weekTextId",weekid+"")
-                .add("teachersReturnText",teachersReturnText).build();
-        Request request = new Request.Builder().url(url).post(requestBody).build();
-        OkHttpClient okHttpClient = new OkHttpClient();
-        Call call = okHttpClient.newCall(request);
-        call.enqueue(new Callback() {
+        FormBody requestBody = new FormBody.Builder()
+                .add("id",week.getId())
+                .build();
+        Type mtype = new TypeToken<Result<String>>() {
+        }.getType();
+        XhOkHttps.PostRequestWithToken(WenLiURL.TEACHER_WARN, requestBody, XhSp.getSharedPreferencesForString(ShowWeekActivity.this, SpConstants.TOKEN), mtype, new XhHttpInterface() {
             @Override
-            public void onFailure(Call call, IOException e) {
+            public void complied(Result result) {
                 mdialog.dismiss();
-                MyLog.Log(ShowWeekActivity.this,"test","onFailure: 服务器连接异常!");
+                int code = result.getCode();
+                if (code == 200){
+                    XhSnackBar.showResult(layout,"提交成功！");
+                }else if(code == 500){
+                    XhSnackBar.showResult(layout,"提交失败！");
+                }
             }
 
             @Override
-            public void onResponse(Call call, final Response response) throws IOException {
+            public void fail() {
                 mdialog.dismiss();
-                String str= null;
-                try {
-                    str = response.body().string();
-                    Gson gson = new Gson();
-                    Type mtype = new TypeToken<JsonReturnData<String>>() {
-                    }.getType();
-                    JsonReturnData jsonReturnData = gson.fromJson(str, mtype);
-                    int code = jsonReturnData.getCode();
-                    if(code == 300){
-                        showResult("请求数据失败!");
-                    }else if(code == 500){
-                        showResult("发送失败!");
-                    }else if(code == 200){
-                        runOnUiThread(new Runnable() {
-                            @Override
-                            public void run() {
-                                NormalDialog.DialogListener(ShowWeekActivity.this, "提示", "发送成功!", new DialogInterface.OnClickListener() {
-                                    @Override
-                                    public void onClick(DialogInterface dialog, int which) {
-                                        setResult(3);
-                                        finish();
-                                    }
-                                });
-                            }
-                        });
-                    }
-                } catch (Exception e) {
-                    e.printStackTrace();
-                    MyLog.Log(ShowWeekActivity.this,"test","onResponse: 服务器数据解析异常 ");
-                } finally {
-                    Log.d("Login_Student_result",str);
-                    MyLog.Log(ShowWeekActivity.this,"Login_Student_result",str);
+                        XhSnackBar.showResult(layout,"提交失败！");
+            }
+        });
+
+    }
+
+    WeekEvent weekEvent = new WeekEvent(false);
+
+    private void sendReturnText(String url,String weekid,String teachersReturnText) {
+        mdialog.show();
+        FormBody requestBody = new FormBody.Builder()
+                .add("id",weekid+"")
+                .add("teacherReturnText",teachersReturnText)
+                .build();
+        Type mtype = new TypeToken<Result<String>>() {
+        }.getType();
+        XhOkHttps.PutRequest(url, XhSp.getSharedPreferencesForString(ShowWeekActivity.this, SpConstants.TOKEN), mtype, requestBody, new XhHttpInterface() {
+            @Override
+            public void complied(Result result) {
+                mdialog.dismiss();
+                int code = result.getCode();
+               if(code == 500){
+                    XhSnackBar.showResult(layout,"发送失败!");
+                }else if(code == 200){
+                    weekEvent.setRead(true);
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            XhDialog.DialogNoCancleWithListener(ShowWeekActivity.this,"提示", "发送成功!", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    setResult(3);
+                                    finish();
+                                }
+                            });
+                        }
+                    });
                 }
+            }
+
+            @Override
+            public void fail() {
+                mdialog.dismiss();
+                XhSnackBar.showResult(layout,"发送失败!");
             }
         });
     }
@@ -244,5 +231,11 @@ public class ShowWeekActivity extends Activity implements View.OnClickListener, 
     public void afterTextChanged(Editable s) {
         index = week_text.getText().toString().length();
         textView_maxnumber.setText(index +"/120");
+    }
+
+    @Override
+    protected void onDestroy() {
+        EventBus.getDefault().post(weekEvent);
+        super.onDestroy();
     }
 }

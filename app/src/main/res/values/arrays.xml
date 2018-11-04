@@ -10,6 +10,10 @@
         <item >恢复初始密码</item>
         <item >设置为寝室长</item>
     </string-array>
+    <string-array name="call_xl">
+        <item >西校区心理热线</item>
+        <item >城中校区心理热线</item>
+    </string-array>
     <string-array name="tea_select">
         <item >学号</item>
         <item >姓名</item>

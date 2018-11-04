@@ -9,23 +9,24 @@ import android.widget.BaseAdapter;
 import android.widget.TextView;
 
 import com.xiaohei.auser.wenliapp.R;
-import com.xiaohei.auser.wenliapp.entity.WeeksText;
+import com.xiaohei.auser.wenliapp.wenlientity.NewWeektext;
 
 import java.util.ArrayList;
 import java.util.List;
 
 /**
  * Created by Auser on 2018/4/15.
+ * 周记显示适配器
  */
 
 public class StudentWeekAdapter extends BaseAdapter {
 
-    private List<WeeksText> list = new ArrayList<>();
+    private List<NewWeektext> list = new ArrayList<>();
     private LayoutInflater layoutInflater;
     private TextView tv_reg;
     private TextView tv_time;
 
-    public StudentWeekAdapter(Context context,List<WeeksText> list) {
+    public StudentWeekAdapter(Context context,List<NewWeektext> list) {
         layoutInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         this.list = list;
     }
@@ -61,12 +62,12 @@ public class StudentWeekAdapter extends BaseAdapter {
             tv_reg = viewCache.tv_reg;
             tv_time = viewCache.tv_time;
         }
-        if (list.get(position).getTeachersReturnText() != null) {
+        if (list.get(position).getStatus() == 0) {
+            tv_reg.setText("未审阅");
+            tv_reg.setTextColor(Color.BLUE);
+        } else {
             tv_reg.setText("已审阅");
             tv_reg.setTextColor(Color.GREEN);
-        } else {
-            tv_reg.setText("未审阅");
-            tv_reg.setTextColor(Color.RED);
         }
         tv_time.setText("提交时间：" + list.get(position).getCreateTime().substring(0,
                 list.get(position).getCreateTime().length()-2));

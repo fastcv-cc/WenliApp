@@ -4,62 +4,53 @@ import android.app.Dialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.design.widget.Snackbar;
-import android.support.v7.app.AppCompatActivity;
 import android.text.InputType;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.RelativeLayout;
-import android.widget.TextView;
 
-import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.xiaohei.auser.wenliapp.R;
-import com.xiaohei.auser.wenliapp.basedata.MyLog;
-import com.xiaohei.auser.wenliapp.dialog.NormalDialog;
-import com.xiaohei.auser.wenliapp.dialog.ShowDialog;
-import com.xiaohei.auser.wenliapp.net.StudentUrl;
-import com.xiaohei.auser.wenliapp.sp.StudentSpUtils;
-import com.xiaohei.auser.wenliapp.utils.JsonReturnData;
+import com.xiaohei.auser.wenliapp.SuperActivity;
+import com.xiaohei.auser.wenliapp.dialog.XhDialog;
+import com.xiaohei.auser.wenliapp.dialog.XhSnackBar;
+import com.xiaohei.auser.wenliapp.minterface.XhHttpInterface;
+import com.xiaohei.auser.wenliapp.net.WenLiURL;
+import com.xiaohei.auser.wenliapp.utils.IntentUtil;
+import com.xiaohei.auser.wenliapp.login.LoginActivity;
+import com.xiaohei.auser.wenliapp.net.XhOkHttps;
+import com.xiaohei.auser.wenliapp.sp.SpConstants;
+import com.xiaohei.auser.wenliapp.sp.XhSp;
+import com.xiaohei.auser.wenliapp.utils.XhLogUtil;
+import com.xiaohei.auser.wenliapp.wenlientity.Result;
 
-import java.io.IOException;
 import java.lang.reflect.Type;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import butterknife.OnClick;
-import okhttp3.Call;
-import okhttp3.Callback;
 import okhttp3.FormBody;
-import okhttp3.OkHttpClient;
-import okhttp3.Request;
-import okhttp3.RequestBody;
-import okhttp3.Response;
 
 /**
  * Created by Auser on 2018/4/17.
  * 用于学生修改密码的界面
  */
 
-public class StudentChangePasswordActivity extends AppCompatActivity implements CompoundButton.OnCheckedChangeListener, View.OnClickListener {
+public class StudentChangePasswordActivity extends SuperActivity implements CompoundButton.OnCheckedChangeListener, View.OnClickListener {
 
-    @BindView(R.id.img_return)
-    ImageView img_return;
-    @BindView(R.id.tv_return)
-    TextView tv_return;
-
+    @BindView(R.id.ly_return)
+    RelativeLayout ly_return;
     @BindView(R.id.old_psw)
     EditText old_psw;
     @BindView(R.id.new_psw)
     EditText new_psw;
     @BindView(R.id.new_psw2)
     EditText new_psw2;
-    @BindView(R.id.psw_sumbit)
-    Button button;
+    @BindView(R.id.bt_sumbit)
+    Button bt_sumbit;
     @BindView(R.id.psw_check)
     CheckBox checkBox;
     @BindView(R.id.rl_layout)
@@ -79,23 +70,94 @@ public class StudentChangePasswordActivity extends AppCompatActivity implements 
     }
 
     private void init() {
-        mdialog = ShowDialog.showLoadingDialog(StudentChangePasswordActivity.this,"正在加载...");
+        mdialog = XhDialog.showLoadingDialog(StudentChangePasswordActivity.this,"正在加载...");
         checkBox.setOnCheckedChangeListener(this);
-        button.setOnClickListener(this);
-    }
-
-    private void showResult(String mes) {
-        Snackbar.make(layout, mes, Snackbar.LENGTH_SHORT)
-                .setDuration(Snackbar.LENGTH_SHORT).show();
-    }
-
-    @OnClick({R.id.img_return,R.id.tv_return})
-    public void ReturnOnclick(View view){
-        finish();
+        bt_sumbit.setOnClickListener(this);
+        ly_return.setOnClickListener(this);
     }
 
     @Override
-    public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+    public void onClick(View v) {
+        switch (v.getId()){
+            case R.id.ly_return:
+                finish();
+            break;
+            case R.id.bt_sumbit:{
+                moldpsw = old_psw.getText().toString();
+                mnewpsw = new_psw.getText().toString();
+                String mnewpsw2 = new_psw2.getText().toString();
+                if (mnewpsw.equals(mnewpsw2)) {
+                    SendMes(WenLiURL.STUDENT_CHANGEPASSWORD);
+                } else {
+                    XhSnackBar.showResult(layout,"两次输入的密码不一样!");
+                }
+            }
+            break;
+        }
+    }
+
+    private void SendMes(String url) {
+        mdialog.show();
+        FormBody requestBody = new FormBody.Builder()
+                .add(WenLiURL.STUDENT_CHANGEPASSWORD_STUDENT_ID,XhSp.getSharedPreferencesForString(StudentChangePasswordActivity.this,SpConstants.STUDENT_ID)+"")
+                .add(WenLiURL.STUDENT_CHANGEPASSWORD_NEW_PASSWORD,mnewpsw)
+                .add(WenLiURL.STUDENT_CHANGEPASSWORD_OLD_PASSWORD,moldpsw)
+                .build();
+
+        XhLogUtil.d("STUDENT_ID:"+XhSp.getSharedPreferencesForString(StudentChangePasswordActivity.this,SpConstants.STUDENT_ID));
+        XhLogUtil.d("NEW_PASSWORD:"+mnewpsw);
+        XhLogUtil.d("OLD_PASSWORD:"+moldpsw);
+        Type mtype = new TypeToken<Result<String>>() {
+        }.getType();
+        XhOkHttps.PutRequest(url, XhSp.getSharedPreferencesForString(StudentChangePasswordActivity.this, SpConstants.TOKEN), mtype, requestBody, new XhHttpInterface() {
+            @Override
+            public void complied(Result result) {
+                mdialog.dismiss();
+                int code = result.getCode();
+                Log.d("CODE", "complied: "+code);
+                if (code == 200) {
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            XhDialog.DialogNoCancleWithListener(StudentChangePasswordActivity.this, "提示", "修改成功！", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    exit();
+                                    XhSp.setSharedPreferences(StudentChangePasswordActivity.this, SpConstants.TOKEN,"");
+                                    IntentUtil.startActivtyWithFinish(StudentChangePasswordActivity.this, LoginActivity.class);
+                                }
+                            });
+                        }
+                    });
+                }else if(code == 888){
+                    XhDialog.DialogNoCancleWithListener(StudentChangePasswordActivity.this, "提示", "账号密码已过期，请重新登录！", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            exit();
+                            XhSp.setSharedPreferences(StudentChangePasswordActivity.this, SpConstants.TOKEN,"");
+                            IntentUtil.startActivtyWithFinish(StudentChangePasswordActivity.this, LoginActivity.class);
+                        }
+                    });
+                }else if(code == 500){
+                    XhSnackBar.showResult(layout, "修改失败，密码错误");
+                }
+            }
+
+            @Override
+            public void fail() {
+                mdialog.dismiss();
+                XhSnackBar.showResultWithAction(layout, "服务器跑丢了", "点我追回", new XhSnackBar.Action() {
+                    @Override
+                    public void actionMethod() {
+                        SendMes(WenLiURL.STUDENT_CHANGEPASSWORD);
+                    }
+                });
+            }
+        });
+    }
+
+    @Override
+    public void onCheckedChanged(CompoundButton compoundButton, boolean isChecked) {
         if(isChecked){
             //选择状态 显示明文--设置为可见的密码
             old_psw.setInputType(InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD);
@@ -107,80 +169,5 @@ public class StudentChangePasswordActivity extends AppCompatActivity implements 
             new_psw.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
             new_psw2.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
         }
-    }
-
-    @Override
-    public void onClick(View v) {
-        moldpsw = old_psw.getText().toString();
-        mnewpsw = new_psw.getText().toString();
-        String mnewpsw2 = new_psw2.getText().toString();
-        if (mnewpsw.equals(mnewpsw2)) {
-            SendMes(StudentUrl.changePsw());
-        } else {
-            showResult("两次输入的密码不一样!");
-        }
-    }
-
-    private void SendMes(String url) {
-        mdialog.show();
-        RequestBody requestBody = new FormBody.Builder().add("studentId",StudentSpUtils.getStudentId(StudentChangePasswordActivity.this)+"")
-                .add("studentPassword",moldpsw).add("newPassword",mnewpsw).build();
-        Request request = new Request.Builder().url(url).post(requestBody).build();
-        OkHttpClient okHttpClient = new OkHttpClient();
-        Call call = okHttpClient.newCall(request);
-        call.enqueue(new Callback() {
-            @Override
-            public void onFailure(Call call, IOException e) {
-                runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        mdialog.dismiss();
-                        showResult("服务器连接异常!");
-                    }
-                });
-            }
-
-            @Override
-            public void onResponse(Call call, final Response response) throws IOException {
-                mdialog.dismiss();
-                String str= null;
-                try {
-                    str = response.body().string();
-                    Gson gson = new Gson();
-                    Type mtype = new TypeToken<JsonReturnData<String>>() {
-                    }.getType();
-                    JsonReturnData jsonReturnData = gson.fromJson(str, mtype);
-                    int code = jsonReturnData.getCode();
-                    if(code == 300){
-                        showResult("请求数据失败!");
-                    }
-                    else if(code == 202){
-                        showResult("密码错误!");
-                    }
-                    else if(code == 500){
-                        showResult("修改失败!");
-                    }
-                    else if(code == 200){
-                        runOnUiThread(new Runnable() {
-                            @Override
-                            public void run() {
-                                NormalDialog.DialogListener(StudentChangePasswordActivity.this, "提示", "修改成功！", new DialogInterface.OnClickListener() {
-                                    @Override
-                                    public void onClick(DialogInterface dialog, int which) {
-                                        setResult(2);
-                                        finish();
-                                    }
-                                });
-                            }
-                        });
-                    }
-                } catch (Exception e) {
-                    e.printStackTrace();
-                    showResult("服务器数据解析异常!");
-                } finally {
-                    MyLog.Log(StudentChangePasswordActivity.this,"Login_Student_result",str);
-                }
-            }
-        });
     }
 }

@@ -1,7 +1,6 @@
 package com.xiaohei.auser.wenliapp.adapter;
 
 import android.content.Context;
-import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,39 +8,39 @@ import android.widget.BaseAdapter;
 import android.widget.TextView;
 
 import com.xiaohei.auser.wenliapp.R;
-import com.xiaohei.auser.wenliapp.entity.WeeksText;
-import com.xiaohei.auser.wenliapp.entity.vo.StudentsVo;
+import com.xiaohei.auser.wenliapp.wenlientity.NewStudent;
 
 import java.util.ArrayList;
 import java.util.List;
 
 /**
  * Created by Auser on 2018/4/15.
+ * 学生信息展示界面的适配器
  */
 
 public class StudentInfoAdapter extends BaseAdapter {
 
-    private List<StudentsVo> list = new ArrayList<>();
+    private List<NewStudent> students = new ArrayList<>();
     private LayoutInflater layoutInflater;
     private TextView tv_name;
     private TextView tv_cardid;
     private TextView tv_ishead;
-    private int headid;
+    private String headid;
 
-    public StudentInfoAdapter(Context context, List<StudentsVo> list,int headid) {
+    public StudentInfoAdapter(Context context, List<NewStudent> list, String headid) {
         layoutInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        this.list = list;
+        this.students = list;
         this.headid = headid;
     }
 
     @Override
     public int getCount() {
-        return list.size();
+        return students.size();
     }
 
     @Override
     public Object getItem(int position) {
-        return list.get(position);
+        return students.get(position);
     }
 
     @Override
@@ -68,9 +67,9 @@ public class StudentInfoAdapter extends BaseAdapter {
             viewCache.tv_cardid = tv_cardid;
             viewCache.tv_ishead = tv_ishead;
         }
-        tv_name.setText(list.get(position).getStudentName());
-        tv_cardid.setText(list.get(position).getStudentCardId());
-        if(list.get(position).getStudentId() != headid){
+        tv_name.setText(students.get(position).getName());
+        tv_cardid.setText(students.get(position).getCardId());
+        if(!students.get(position).getId().equals(headid)){
             tv_ishead.setText("否");
         }else{
             tv_ishead.setText("是");

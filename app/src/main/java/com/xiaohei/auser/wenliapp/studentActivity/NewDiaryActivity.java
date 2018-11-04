@@ -1,11 +1,10 @@
 package com.xiaohei.auser.wenliapp.studentActivity;
 
 import android.app.Dialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.annotation.IdRes;
 import android.support.annotation.Nullable;
-import android.support.design.widget.Snackbar;
-import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
@@ -14,47 +13,47 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import com.xiaohei.auser.wenliapp.Dao.StudentDao;
+import com.xiaohei.auser.wenliapp.Dao.WeekTextDao;
 import com.xiaohei.auser.wenliapp.R;
-import com.xiaohei.auser.wenliapp.basedata.MyLog;
-import com.xiaohei.auser.wenliapp.dao.StudentDao;
-import com.xiaohei.auser.wenliapp.dialog.NormalDialog;
-import com.xiaohei.auser.wenliapp.dialog.ShowDialog;
-import com.xiaohei.auser.wenliapp.entity.NetEvent;
-import com.xiaohei.auser.wenliapp.entity.WeeksText;
-import com.xiaohei.auser.wenliapp.net.StudentUrl;
-import com.xiaohei.auser.wenliapp.sp.StudentSpUtils;
-import com.xiaohei.auser.wenliapp.utils.JsonReturnData;
+import com.xiaohei.auser.wenliapp.SuperActivity;
+import com.xiaohei.auser.wenliapp.dialog.XhDialog;
+import com.xiaohei.auser.wenliapp.dialog.XhSnackBar;
+import com.xiaohei.auser.wenliapp.login.LoginActivity;
+import com.xiaohei.auser.wenliapp.utils.IntentUtil;
+import com.xiaohei.auser.wenliapp.utils.Trans;
+import com.xiaohei.auser.wenliapp.wenlievent.NetEvent;
+import com.xiaohei.auser.wenliapp.minterface.XhHttpInterface;
+import com.xiaohei.auser.wenliapp.net.WenLiURL;
+import com.xiaohei.auser.wenliapp.net.XhOkHttps;
+import com.xiaohei.auser.wenliapp.sp.SpConstants;
+import com.xiaohei.auser.wenliapp.sp.XhSp;
+import com.xiaohei.auser.wenliapp.utils.XhLogUtil;
+import com.xiaohei.auser.wenliapp.wenlientity.Result;
+import com.xiaohei.auser.wenliapp.wenlientity.dbentity.DbWeeksText;
 
 import org.greenrobot.eventbus.EventBus;
 
-import java.io.IOException;
 import java.lang.reflect.Type;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import okhttp3.Call;
-import okhttp3.Callback;
 import okhttp3.FormBody;
-import okhttp3.OkHttpClient;
-import okhttp3.Request;
 import okhttp3.RequestBody;
-import okhttp3.Response;
 
 /**
  * Created by Auser on 2018/4/17.
  * 周记填写提交界面
  */
 
-public class NewDiaryActivity extends AppCompatActivity implements View.OnClickListener, RadioGroup.OnCheckedChangeListener, TextWatcher {
+public class NewDiaryActivity extends SuperActivity implements View.OnClickListener, RadioGroup.OnCheckedChangeListener, TextWatcher {
 
-    @BindView(R.id.img_return)
-    ImageView img_return;
-    @BindView(R.id.tv_return)
-    TextView tv_return;
+    @BindView(R.id.ly_return)
+    RelativeLayout ly_return;
     @BindView(R.id.img_send)
     ImageView img_send;
     //1、学习情况
@@ -130,17 +129,16 @@ public class NewDiaryActivity extends AppCompatActivity implements View.OnClickL
     LinearLayout layout;
 
     //设置默认值
-    int study = 1;
-    int health = 1;
-    int mood = 1;
-    int consume = 1;
-    int returnhome = 1;
-    int sleep = 1;
-    int love = 1;
+    int study = Trans.ONE_NUM;
+    int health = Trans.ONE_NUM;
+    int mood = Trans.ONE_NUM;
+    int consume = Trans.ZERO_NUM;
+    int returnhome = Trans.ZERO_NUM;
+    int sleep = Trans.ONE_NUM;
+    int love = Trans.ZERO_NUM;
 
     private Dialog mdialog;
-
-    int roomid;
+    private String roomid;
     private int index;
 
 
@@ -153,12 +151,12 @@ public class NewDiaryActivity extends AppCompatActivity implements View.OnClickL
     }
 
     private void init() {
-        roomid = StudentDao.getStudentRoomId(NewDiaryActivity.this,StudentSpUtils.getStudentId(NewDiaryActivity.this));
-        WeeksText weeksText = StudentDao.getWeek(NewDiaryActivity.this,roomid);
+        roomid = StudentDao.getStudent().getRoomId();
+        DbWeeksText weeksText = WeekTextDao.getWeekText(roomid);
         if(weeksText != null){
             initview(weeksText);
         }
-        mdialog = ShowDialog.showLoadingDialog(NewDiaryActivity.this,"正在加载...");
+        mdialog = XhDialog.showLoadingDialog(NewDiaryActivity.this,"正在加载...");
         diary_study.setFocusable(true);
         diary_study.setFocusableInTouchMode(true);
         diary_study.requestFocus();
@@ -170,68 +168,81 @@ public class NewDiaryActivity extends AppCompatActivity implements View.OnClickL
         diary_sleep.setOnCheckedChangeListener(this);
         diary_lovelose.setOnCheckedChangeListener(this);
         diary_text.addTextChangedListener(this);
-        img_return.setOnClickListener(this);
-        tv_return.setOnClickListener(this);
+        ly_return.setOnClickListener(this);
         img_send.setOnClickListener(this);
     }
 
-    private void initview(WeeksText weeksText) {
-        if(weeksText.getStudy() == 1){
+    private void test(RadioButton radioButton, int status) {
+        if (status == 1) {
+            radioButton.setChecked(true);
+        }
+    }
+
+    private void initview(DbWeeksText weeksText) {
+
+        if(weeksText.getStudyStatus() == Trans.ONE_NUM){
             diary_study_1.setChecked(true);
-        }else if(weeksText.getStudy() == 2){
+        }else if(weeksText.getStudyStatus() == Trans.TWO_NUM){
             diary_study_2.setChecked(true);
-        }else{
+        }else if (weeksText.getStudyStatus() == Trans.THREE_NUM){
             diary_study_3.setChecked(true);
         }
-        study = weeksText.getStudy();
-        if(weeksText.getHealth() == 1){
+
+        study = weeksText.getStudyStatus();
+        if(weeksText.getHealthStatus() == Trans.ONE_NUM){
             diary_heath_1.setChecked(true);
-        }else if(weeksText.getStudy() == 2){
+        }else if(weeksText.getHealthStatus() == Trans.TWO_NUM){
             diary_heath_2.setChecked(true);
-        }else{
+        }else if(weeksText.getHealthStatus() == Trans.THREE_NUM){
             diary_heath_3.setChecked(true);
         }
-        health = weeksText.getHealth();
-        if(weeksText.getMood() == 1){
+
+        health = weeksText.getHealthStatus();
+        if(weeksText.getMoodStatus() == Trans.ONE_NUM){
             diary_mood_1.setChecked(true);
-        }else if(weeksText.getStudy() == 2){
+        }else if(weeksText.getMoodStatus() == Trans.TWO_NUM){
             diary_mood_2.setChecked(true);
-        }else{
+        }else if(weeksText.getMoodStatus() == Trans.THREE_NUM){
             diary_mood_3.setChecked(true);
         }
-        mood = weeksText.getMood();
-        if(weeksText.getConsume() == 1){
+
+        mood = weeksText.getMoodStatus();
+        if(weeksText.getConsumeStatus() == Trans.ZERO_NUM){
             diary_consume_1.setChecked(true);
-        }else if(weeksText.getStudy() == 2){
+        }else if(weeksText.getConsumeStatus() == Trans.FOUR_NUM){
             diary_consume_2.setChecked(true);
-        }else{
+        }else if(weeksText.getConsumeStatus() == Trans.FIVE_NUM){
             diary_consume_3.setChecked(true);
         }
-        consume = weeksText.getConsume();
-        if(weeksText.getReturnHome() == 1){
+
+        consume = weeksText.getConsumeStatus();
+        if(weeksText.getReturnRoomStatus() == Trans.ZERO_NUM){
             diary_return_1.setChecked(true);
-        }else if(weeksText.getStudy() == 2){
+        }else if(weeksText.getReturnRoomStatus() == Trans.FOUR_NUM){
             diary_return_2.setChecked(true);
-        }else{
+        }else if(weeksText.getReturnRoomStatus() == Trans.FIVE_NUM){
             diary_return_3.setChecked(true);
         }
-        returnhome = weeksText.getReturnHome();
-        if(weeksText.getSleepCondition() == 1){
+
+        returnhome = weeksText.getReturnRoomStatus();
+        if(weeksText.getSleepStatus() == Trans.ONE_NUM){
             diary_sleep_1.setChecked(true);
-        }else if(weeksText.getStudy() == 2){
+        }else if(weeksText.getSleepStatus() == Trans.TWO_NUM){
             diary_sleep_2.setChecked(true);
-        }else{
+        }else if(weeksText.getSleepStatus() == Trans.THREE_NUM){
             diary_sleep_3.setChecked(true);
         }
-        sleep = weeksText.getSleepCondition();
-        if(weeksText.getLoveLose() == 1){
+
+        sleep = weeksText.getSleepStatus();
+        if(weeksText.getLoveStatus() == Trans.ZERO_NUM){
             diary_lovelose_1.setChecked(true);
-        }else if(weeksText.getStudy() == 2){
+        }else if(weeksText.getLoveStatus() == Trans.SEVEN_NUM){
             diary_lovelose_2.setChecked(true);
-        }else{
+        }else if(weeksText.getLoveStatus() == Trans.SIX_NUM){
             diary_lovelose_3.setChecked(true);
         }
-        love = weeksText.getLoveLose();
+
+        love = weeksText.getLoveStatus();
         diary_text.setText(weeksText.getConditionText());
         index = weeksText.getConditionText().length();
         textView_maxnumber.setText(index +"/120");
@@ -239,12 +250,12 @@ public class NewDiaryActivity extends AppCompatActivity implements View.OnClickL
 
     @Override
     public void onClick(View v) {
-        if(v.getId() == R.id.tv_return || v.getId() == R.id.img_return) {
+        if(v.getId() == R.id.ly_return) {
             SaveDate();
             finish();
         }
         else if(v.getId() == R.id.img_send){
-            sendMes(StudentUrl.sendMesUrl());
+            sendMes(WenLiURL.SEND_WEEKTEXT);
         }
     }
 
@@ -253,75 +264,65 @@ public class NewDiaryActivity extends AppCompatActivity implements View.OnClickL
         SaveDate();
         String text;
         if(diary_text.getText().toString().trim().equals("")){
-            text = diary_text.getHint().toString();
+            text = "无情况反映";
         }else{
             text = diary_text.getText().toString();
         }
-        RequestBody requestBody = new FormBody.Builder().
-                add("roomId",StudentDao.getStudentRoomId(NewDiaryActivity.this,StudentSpUtils.getStudentId(NewDiaryActivity.this))+"")
-                .add("study",study+"")
-                .add("health",health+"")
-                .add("returnHome",returnhome+"")
-                .add("sleepCondition",sleep+"")
-                .add("mood",mood+"")
-                .add("consume",consume+"")
-                .add("loveLose",love+"")
-                .add("conditionText",text)
+        RequestBody requestBody = new FormBody.Builder()
+                .add(WenLiURL.SEND_WEEKTEXT_ROOMID,roomid+"")
+                .add(WenLiURL.SEND_WEEKTEXT_STUDYSTATUS,study+"")
+                .add(WenLiURL.SEND_WEEKTEXT_MOODSTATUS,mood+"")
+                .add(WenLiURL.SEND_WEEKTEXT_HEALTHSTATUS,health+"")
+                .add(WenLiURL.SEND_WEEKTEXT_RETURNROOMSTATUS,returnhome+"")
+                .add(WenLiURL.SEND_WEEKTEXT_SLEEPSTATUS,sleep+"")
+                .add(WenLiURL.SEND_WEEKTEXT_CONSUMESTATUS,consume+"")
+                .add(WenLiURL.SEND_WEEKTEXT_LOVESTATUS,love+"")
+                .add(WenLiURL.SEND_WEEKTEXT_CONDITIONTEXT,text)
+                .add(WenLiURL.SEND_WEEKTEXT_STATUS,0+"")
                 .build();
-        Request request = new Request.Builder().url(url).post(requestBody).build();
-        OkHttpClient okHttpClient = new OkHttpClient();
-        Call call = okHttpClient.newCall(request);
-        call.enqueue(new Callback() {
-            @Override
-            public void onFailure(Call call, IOException e) {
-                runOnUiThread(new Runnable() {
+
+        XhLogUtil.d(text);
+
+        Type mtype = new TypeToken<Result<String>>() {
+        }.getType();
+        XhOkHttps.PostRequestWithToken(url, requestBody, XhSp.getSharedPreferencesForString(NewDiaryActivity.this, SpConstants.TOKEN) ,mtype, new XhHttpInterface() {
                     @Override
-                    public void run() {
+                    public void complied(Result result) {
                         mdialog.dismiss();
-                        showResult("服务器连接异常!");
+                        int code = result.getCode();
+                        if(code == 200){
+                            runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    EventBus.getDefault().post(new NetEvent(true));
+                                    XhDialog.DialogNoCancleWithListener(NewDiaryActivity.this, "提示", "发送成功！", new DialogInterface.OnClickListener() {
+                                        @Override
+                                        public void onClick(DialogInterface dialogInterface, int i) {
+                                            finish();
+                                        }
+                                    });
+                                }
+                            });
+                        }else if(code == 888){
+                            XhDialog.DialogNoCancleWithListener(NewDiaryActivity.this, "提示", "账号密码已过期，请重新登录！", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialogInterface, int i) {
+                                    exit();
+                                    XhSp.setSharedPreferences(NewDiaryActivity.this, SpConstants.TOKEN,"");
+                                    IntentUtil.startActivtyWithFinish(NewDiaryActivity.this, LoginActivity.class);
+                                }
+                            });
+                        }else if (code == 500){
+                            XhSnackBar.showResult(layout,"发送失败，请重试！");
+                        }
+                    }
+
+                    @Override
+                    public void fail() {
+                        mdialog.dismiss();
+                        XhSnackBar.showResult(layout,"服务器连接异常!");
                     }
                 });
-            }
-
-            @Override
-            public void onResponse(Call call, final Response response) throws IOException {
-                mdialog.dismiss();
-                String str= null;
-                try {
-                    str = response.body().string();
-                    Gson gson = new Gson();
-                    Type mtype = new TypeToken<JsonReturnData<String>>() {
-                    }.getType();
-                    JsonReturnData jsonReturnData = gson.fromJson(str, mtype);
-                    int code = jsonReturnData.getCode();
-                    if(code == 300){
-                        showResult("请求数据失败!");
-                    }
-                    else if(code == 401){
-                        showResult("添加失败!");
-                    }
-                    else if(code == 200){
-                        runOnUiThread(new Runnable() {
-                            @Override
-                            public void run() {
-                                EventBus.getDefault().post(new NetEvent(true));
-                                NormalDialog.DialogListener(NewDiaryActivity.this,"提示","发送成功！");
-                            }
-                        });
-                    }
-                } catch (Exception e) {
-                    e.printStackTrace();
-                    showResult("服务器数据解析异常!");
-                } finally {
-                    MyLog.Log(NewDiaryActivity.this,"Login_Student_result",str);
-                }
-            }
-        });
-    }
-
-    private void showResult(String mes) {
-        Snackbar.make(layout, mes, Snackbar.LENGTH_SHORT)
-                .setDuration(Snackbar.LENGTH_SHORT).show();
     }
 
     @Override
@@ -329,71 +330,71 @@ public class NewDiaryActivity extends AppCompatActivity implements View.OnClickL
         switch (group.getId()){
             case R.id.diary_study:{
                 if(checkedId == R.id.diary_study_1){
-                    study = 1;
+                    study = Trans.ONE_NUM;
                 }else if(checkedId == R.id.diary_study_2){
-                    study = 2;
+                    study = Trans.TWO_NUM;
                 }else if(checkedId == R.id.diary_study_3){
-                    study = 3;
+                    study = Trans.THREE_NUM;
                 }
             }
             break;
             case R.id.diary_heath:{
                 if(checkedId == R.id.diary_heath_1){
-                    health = 1;
+                    health = Trans.ONE_NUM;
                 }else if(checkedId == R.id.diary_heath_2){
-                    health = 2;
+                    health = Trans.TWO_NUM;
                 }else if(checkedId == R.id.diary_heath_3){
-                    health = 3;
+                    health = Trans.THREE_NUM;
                 }
             }
             break;
             case R.id.diary_mood:{
                 if(checkedId == R.id.diary_mood_1){
-                    mood = 1;
+                    mood = Trans.ONE_NUM;
                 }else if(checkedId == R.id.diary_mood_2){
-                    mood = 2;
+                    mood = Trans.TWO_NUM;
                 }else if(checkedId == R.id.diary_mood_3){
-                    mood = 3;
+                    mood = Trans.THREE_NUM;
                 }
             }
             break;
             case R.id.diary_consume:{
                 if(checkedId == R.id.diary_consume_1){
-                    consume = 1;
+                    consume = Trans.ZERO_NUM;
                 }else if(checkedId == R.id.diary_consume_2){
-                    consume = 2;
+                    consume = Trans.FOUR_NUM;
                 }else if(checkedId == R.id.diary_consume_3){
-                    consume = 3;
+                    consume = Trans.FIVE_NUM;
                 }
             }
             break;
             case R.id.diary_return:{
                 if(checkedId == R.id.diary_return_1){
-                    returnhome = 1;
+                    returnhome = Trans.ZERO_NUM;
                 }else if(checkedId == R.id.diary_return_2){
-                    returnhome = 2;
+                    returnhome = Trans.FOUR_NUM;
                 }else if(checkedId == R.id.diary_return_3){
-                    returnhome = 3;
+                    returnhome = Trans.FIVE_NUM;
                 }
             }
             break;
             case R.id.diary_sleep:{
                 if(checkedId == R.id.diary_sleep_1){
-                    sleep = 1;
+                    sleep = Trans.ONE_NUM;
                 }else if(checkedId == R.id.diary_sleep_2){
-                    sleep = 2;
+                    sleep = Trans.TWO_NUM;
                 }else if(checkedId == R.id.diary_sleep_3){
-                    sleep = 3;
+                    sleep = Trans.THREE_NUM;
                 }
             }
             break;
             case R.id.diary_lovelose:{
                 if(checkedId == R.id.diary_lovelose_1){
-                    love = 1;
+                    love = Trans.ZERO_NUM;
                 }else if(checkedId == R.id.diary_lovelose_2){
-                    love = 2;
+                    love = Trans.SEVEN_NUM;
                 }else if(checkedId == R.id.diary_lovelose_3){
-                    love = 3;
+                    love = Trans.SIX_NUM;
                 }
             }
             break;
@@ -406,18 +407,24 @@ public class NewDiaryActivity extends AppCompatActivity implements View.OnClickL
      */
 
     public void SaveDate() {
-        StudentDao.delWeek(NewDiaryActivity.this,roomid);
-        WeeksText weeksText = new WeeksText();
-        weeksText.setRoomId(roomid);
-        weeksText.setStudy((byte)study);
-        weeksText.setHealth((byte)health);
-        weeksText.setMood((byte)mood);
-        weeksText.setConsume((byte)consume);
-        weeksText.setReturnHome((byte)returnhome);
-        weeksText.setSleepCondition((byte)sleep);
-        weeksText.setLoveLose((byte)love);
-        weeksText.setConditionText(diary_text.getText().toString());
-        StudentDao.addWeek(NewDiaryActivity.this,weeksText);
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                DbWeeksText weeksText = new DbWeeksText();
+                weeksText.setRoomId(roomid);
+                weeksText.setStudyStatus(study);
+                weeksText.setHealthStatus(health);
+                weeksText.setMoodStatus(mood);
+                weeksText.setConsumeStatus(consume);
+                weeksText.setReturnRoomStatus(returnhome);
+                weeksText.setSleepStatus(sleep);
+                weeksText.setLoveStatus(love);
+                weeksText.setConditionText(diary_text.getText().toString());
+                weeksText.setId(1);
+                WeekTextDao.saveWeekText(weeksText,roomid);
+            }
+        });
+
     }
 
     @Override
@@ -432,7 +439,6 @@ public class NewDiaryActivity extends AppCompatActivity implements View.OnClickL
 
     @Override
     public void onTextChanged(CharSequence s, int start, int before, int count) {
-
     }
 
     @Override

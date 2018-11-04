@@ -1,16 +1,15 @@
 package com.xiaohei.auser.wenliapp.teacherActivity;
 
-import android.app.Activity;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.xiaohei.auser.wenliapp.Dao.TeacherDao;
 import com.xiaohei.auser.wenliapp.R;
-import com.xiaohei.auser.wenliapp.dao.TeacherDao;
-import com.xiaohei.auser.wenliapp.entity.vo.TeachersVo;
-import com.xiaohei.auser.wenliapp.sp.TeacherSpUtils;
+import com.xiaohei.auser.wenliapp.SuperActivity;
+import com.xiaohei.auser.wenliapp.wenlientity.dbentity.DbTeacher;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -21,7 +20,7 @@ import butterknife.OnClick;
  * 用于展示教师的信息
  */
 
-public class TeacherInfoActivity extends Activity {
+public class TeacherInfoActivity extends SuperActivity {
 
     @BindView(R.id.img_return)
     ImageView img_return;
@@ -44,10 +43,10 @@ public class TeacherInfoActivity extends Activity {
     }
 
     private void init() {
-        TeachersVo teachersVo = TeacherDao.getTeacher(TeacherInfoActivity.this, TeacherSpUtils.getTeacherId(TeacherInfoActivity.this));
-        studentName.setText(teachersVo.getTeacherName());
-        studentId.setText(teachersVo.getTeacherCardId());
-        studentDepartment.setText(teachersVo.getDepartmentName());
+        DbTeacher teacher = TeacherDao.getTeacher();
+        studentName.setText(teacher.getNickName());
+        studentId.setText(teacher.getUsername());
+        studentDepartment.setText(teacher.getDepartmentName());
 
     }
 

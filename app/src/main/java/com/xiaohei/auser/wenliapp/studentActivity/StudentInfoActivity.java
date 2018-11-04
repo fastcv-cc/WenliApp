@@ -2,15 +2,14 @@ package com.xiaohei.auser.wenliapp.studentActivity;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.xiaohei.auser.wenliapp.Dao.StudentDao;
 import com.xiaohei.auser.wenliapp.R;
-import com.xiaohei.auser.wenliapp.dao.StudentDao;
-import com.xiaohei.auser.wenliapp.entity.vo.StudentsVo;
-import com.xiaohei.auser.wenliapp.sp.StudentSpUtils;
+import com.xiaohei.auser.wenliapp.SuperActivity;
+import com.xiaohei.auser.wenliapp.wenlientity.dbentity.DbStudent;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -20,12 +19,10 @@ import butterknife.ButterKnife;
  * 用于学生信息的展示
  */
 
-public class StudentInfoActivity extends AppCompatActivity implements View.OnClickListener {
+public class StudentInfoActivity extends SuperActivity implements View.OnClickListener {
 
-    @BindView(R.id.img_return)
-    ImageView img_return;
-    @BindView(R.id.tv_return)
-    TextView tv_return;
+    @BindView(R.id.ly_return)
+    RelativeLayout ly_return;
     @BindView(R.id.tv_stuinfo_name)
     TextView studentName;
     @BindView(R.id.tv_stuinfo_id)
@@ -49,16 +46,14 @@ public class StudentInfoActivity extends AppCompatActivity implements View.OnCli
     }
 
     private void init() {
-        StudentsVo complete = StudentDao.getStudent(this,
-                StudentSpUtils.getStudentId(this));
-        studentName.setText(complete.getStudentName());
-        studentIdcard.setText(complete.getStudentCardId());
-        studentDepartment.setText(complete.getDepartmentName());
-        studentClasses.setText(complete.getClassName());
-        studentBuild.setText(complete.getBuildName());
-        studentRoom.setText(complete.getRoomName());
-        img_return.setOnClickListener(this);
-        tv_return.setOnClickListener(this);
+        DbStudent student = StudentDao.getStudent();
+        studentName.setText(student.getName());
+        studentIdcard.setText(student.getCardId());
+        studentDepartment.setText(student.getDepartmentName());
+        studentClasses.setText(student.getClassesName());
+        studentBuild.setText(student.getBuildName());
+        studentRoom.setText(student.getRoomName());
+        ly_return.setOnClickListener(this);
     }
 
     @Override

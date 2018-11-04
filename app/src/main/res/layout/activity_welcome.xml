@@ -2,8 +2,16 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/welcome"
+    android:id="@+id/welcome_layout"
+    android:background="#FFFFFF"
     >
+
+    <ImageView
+        android:layout_width="300dp"
+        android:src="@drawable/welcome"
+        android:layout_centerInParent="true"
+        android:id="@+id/img_welcome"
+        android:layout_height="300dp" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -14,6 +22,32 @@
         android:layout_marginRight="10dp"
         android:id="@+id/welcome_tv_version"
         />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:text="拨打电话"
+        android:drawableLeft="@drawable/callxl"
+        android:gravity="center"
+        android:id="@+id/call_xl"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="10dp"
+        android:enabled="false"
+        android:textColor="#000000"
+        android:visibility="gone"
+        android:layout_height="wrap_content" />
+
+    <Button
+        android:layout_width="250dp"
+        android:text="点击进入"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="20dp"
+        android:id="@+id/gohome"
+        android:enabled="false"
+        android:visibility="gone"
+        android:background="@drawable/welcome_button_login"
+        android:layout_height="35dp" />
 
 
 </RelativeLayout>

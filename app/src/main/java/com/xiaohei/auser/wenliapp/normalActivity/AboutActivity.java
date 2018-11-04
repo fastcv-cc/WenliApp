@@ -8,7 +8,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.xiaohei.auser.wenliapp.R;
-import com.xiaohei.auser.wenliapp.dialog.ShowDialog;
+import com.xiaohei.auser.wenliapp.dialog.XhDialog;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -37,7 +37,7 @@ public class AboutActivity extends AppCompatActivity {
 
     @OnClick(R.id.photo)
     public void showPhoto(View v){
-        ShowDialog.showErweimaDialog(AboutActivity.this);
+        XhDialog.showErweimaDialog(AboutActivity.this);
     }
 
     @OnClick({R.id.img_return,R.id.tv_return})

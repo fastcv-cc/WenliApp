@@ -2,20 +2,34 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/activity_main"
-    android:background="@drawable/img_login_bg2"
+    android:background="#79CBF1"
     >
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:background="#FAFAFE"
+        android:layout_marginTop="50dp"
+        android:layout_marginBottom="50dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:src="@drawable/img_login"
+            android:layout_marginTop="10dp"
+            android:layout_height="120dp" />
 
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_marginLeft="60dp"
         android:orientation="vertical"
-        android:background="#E3E4E8"
-        android:layout_centerInParent="true"
-        android:layout_marginRight="60dp"
+        android:layout_marginRight="20dp"
+        android:background="@color/login_bg"
+        android:layout_marginTop="140dp"
         android:paddingLeft="10dp"
+        android:layout_marginLeft="20dp"
         android:paddingRight="10dp"
         android:layout_height="wrap_content">
 
@@ -28,7 +42,7 @@
             <com.xiaohei.auser.wenliapp.widget.ClearEditText
                 android:layout_width="match_parent"
                 android:id="@+id/et_username"
-                android:hint="学号/工号"
+                android:hint="@string/login_username"
                 android:maxLength="10"
                 android:maxLines="1"
                 android:numeric="integer"
@@ -39,16 +53,13 @@
         <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
             android:id="@+id/tl_password"
-            android:layout_below="@id/tl_username"
-            android:layout_centerHorizontal="true"
-            android:layout_centerInParent="true"
             android:layout_marginTop="20dp"
             android:layout_height="wrap_content">
 
             <com.xiaohei.auser.wenliapp.widget.ClearEditText
                 android:layout_width="match_parent"
                 android:id="@+id/et_password"
-                android:hint="密码"
+                android:hint="@string/login_password"
                 android:layout_below="@id/tl_username"
                 android:maxLength="10"
                 android:maxLines="1"
@@ -65,7 +76,7 @@
 
             <TextView
                 android:layout_width="wrap_content"
-                android:text="登录身份："
+                android:text="@string/login_type"
                 android:gravity="center_vertical"
                 android:layout_height="match_parent" />
 
@@ -80,7 +91,7 @@
                 <RadioButton
                     android:layout_width="0dp"
                     android:layout_weight="1"
-                    android:text="老师"
+                    android:text="@string/teacher"
                     android:id="@+id/type_tea"
                     android:gravity="center"
                     android:textColor="#1FBAF3"
@@ -89,7 +100,7 @@
                 <RadioButton
                     android:layout_width="0dp"
                     android:layout_weight="1"
-                    android:text="学生"
+                    android:text="@string/student"
                     android:checked="true"
                     android:textColor="#1FBAF3"
                     android:id="@+id/type_stu"
@@ -104,15 +115,17 @@
 
     <Button
         android:layout_width="match_parent"
-        android:text="登录"
-        android:id="@+id/bt_snackbar"
+        android:text="@string/login"
+        android:id="@+id/bt_login"
         android:layout_alignParentBottom="true"
-        android:layout_marginBottom="100dp"
-        android:layout_marginLeft="60dp"
-        android:layout_marginRight="60dp"
+        android:layout_marginBottom="30dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
         android:textSize="18sp"
         android:textColor="#FFFFFF"
         android:background="@drawable/button_login"
         android:layout_height="40dp" />
+
+    </RelativeLayout>
 
 </RelativeLayout>
