@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <litepal>
-    <dbname value="wenlidb" />
-    <version value="1" />
-    <list>
-        <mapping class="com.xiaohei.auser.wenliapp.wenlientity.dbentity.DbStudent"/>
-        <mapping class="com.xiaohei.auser.wenliapp.wenlientity.dbentity.DbTeacher"/>
-        <mapping class="com.xiaohei.auser.wenliapp.wenlientity.dbentity.DbWeeksText"/>
-    </list>
+<dbname value="wenlidb" />
+<version value="1" />
+<list>
+    <mapping class="com.xiaohei.auser.wenliapp.wenlientity.dbentity.DbStudent"/>
+    <mapping class="com.xiaohei.auser.wenliapp.wenlientity.dbentity.DbTeacher"/>
+    <mapping class="com.xiaohei.auser.wenliapp.wenlientity.dbentity.DbWeeksText"/>
+</list>
 </litepal>

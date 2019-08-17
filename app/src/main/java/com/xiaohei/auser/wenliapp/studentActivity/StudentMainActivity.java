@@ -5,9 +5,9 @@ import android.content.DialogInterface;
 import android.content.IntentFilter;
 import android.net.ConnectivityManager;
 import android.os.Bundle;
-import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.ActionBarDrawerToggle;
-import android.support.v7.widget.Toolbar;
+import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.appcompat.app.ActionBarDrawerToggle;
+import androidx.appcompat.widget.Toolbar;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ImageView;
@@ -25,6 +25,7 @@ import com.xiaohei.auser.wenliapp.adapter.StudentWeekAdapter;
 import com.xiaohei.auser.wenliapp.basedata.BaseData;
 import com.xiaohei.auser.wenliapp.dialog.XhDialog;
 import com.xiaohei.auser.wenliapp.dialog.XhSnackBar;
+import com.xiaohei.auser.wenliapp.utils.StatusBarFullTransparentTools;
 import com.xiaohei.auser.wenliapp.wenlievent.NetEvent;
 import com.xiaohei.auser.wenliapp.minterface.XhHttpInterface;
 import com.xiaohei.auser.wenliapp.net.WenLiURL;
@@ -93,6 +94,12 @@ public class StudentMainActivity extends SuperActivity implements AdapterView.On
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_student_main);
+
+        /**
+         * 增加沉浸式
+         */
+        StatusBarFullTransparentTools.addAll(true,this);
+
         ButterKnife.bind(this);
         init();
         initReceive();

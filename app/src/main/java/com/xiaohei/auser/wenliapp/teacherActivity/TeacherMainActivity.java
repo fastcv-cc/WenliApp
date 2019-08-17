@@ -1,15 +1,14 @@
 package com.xiaohei.auser.wenliapp.teacherActivity;
 
-import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.support.annotation.IdRes;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
-import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.ActionBarDrawerToggle;
-import android.support.v7.widget.Toolbar;
+import androidx.annotation.IdRes;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
+import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.appcompat.app.ActionBarDrawerToggle;
+import androidx.appcompat.widget.Toolbar;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
@@ -29,6 +28,7 @@ import com.xiaohei.auser.wenliapp.login.LoginActivity;
 import com.xiaohei.auser.wenliapp.normalActivity.SettingActivity;
 import com.xiaohei.auser.wenliapp.sp.SpConstants;
 import com.xiaohei.auser.wenliapp.sp.XhSp;
+import com.xiaohei.auser.wenliapp.utils.StatusBarFullTransparentTools;
 
 import java.util.ArrayList;
 
@@ -69,6 +69,12 @@ public class TeacherMainActivity extends SuperActivity implements AdapterView.On
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_teacher_mian);
+
+        /**
+         * 增加沉浸式
+         */
+        StatusBarFullTransparentTools.addAll(true,this);
+
         ButterKnife.bind(this);
         init();
         initData();

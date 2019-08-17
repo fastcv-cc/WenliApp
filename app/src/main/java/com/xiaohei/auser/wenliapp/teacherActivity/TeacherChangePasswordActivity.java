@@ -3,7 +3,7 @@ package com.xiaohei.auser.wenliapp.teacherActivity;
 import android.app.Dialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
+import androidx.annotation.Nullable;
 import android.text.InputType;
 import android.view.View;
 import android.widget.Button;
@@ -20,12 +20,12 @@ import com.xiaohei.auser.wenliapp.dialog.XhDialog;
 import com.xiaohei.auser.wenliapp.dialog.XhSnackBar;
 import com.xiaohei.auser.wenliapp.minterface.XhHttpInterface;
 import com.xiaohei.auser.wenliapp.net.WenLiURL;
-import com.xiaohei.auser.wenliapp.studentActivity.StudentChangePasswordActivity;
 import com.xiaohei.auser.wenliapp.utils.IntentUtil;
 import com.xiaohei.auser.wenliapp.login.LoginActivity;
 import com.xiaohei.auser.wenliapp.net.XhOkHttps;
 import com.xiaohei.auser.wenliapp.sp.SpConstants;
 import com.xiaohei.auser.wenliapp.sp.XhSp;
+import com.xiaohei.auser.wenliapp.utils.StatusBarFullTransparentTools;
 import com.xiaohei.auser.wenliapp.wenlientity.Result;
 
 import java.lang.reflect.Type;
@@ -66,6 +66,12 @@ public class TeacherChangePasswordActivity extends SuperActivity implements View
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_teacher_changepass);
+
+        /**
+         * 增加沉浸式
+         */
+        StatusBarFullTransparentTools.addAll(true,this);
+
         ButterKnife.bind(this);
         init();
     }

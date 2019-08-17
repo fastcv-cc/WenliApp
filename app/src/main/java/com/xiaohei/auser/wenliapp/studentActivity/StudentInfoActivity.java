@@ -1,7 +1,7 @@
 package com.xiaohei.auser.wenliapp.studentActivity;
 
 import android.os.Bundle;
-import android.support.annotation.Nullable;
+import androidx.annotation.Nullable;
 import android.view.View;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -9,6 +9,7 @@ import android.widget.TextView;
 import com.xiaohei.auser.wenliapp.Dao.StudentDao;
 import com.xiaohei.auser.wenliapp.R;
 import com.xiaohei.auser.wenliapp.SuperActivity;
+import com.xiaohei.auser.wenliapp.utils.StatusBarFullTransparentTools;
 import com.xiaohei.auser.wenliapp.wenlientity.dbentity.DbStudent;
 
 import butterknife.BindView;
@@ -41,6 +42,12 @@ public class StudentInfoActivity extends SuperActivity implements View.OnClickLi
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_studentinfo);
+
+        /**
+         * 增加沉浸式
+         */
+        StatusBarFullTransparentTools.addAll(true,this);
+
         ButterKnife.bind(this);
         init();
     }

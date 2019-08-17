@@ -10,7 +10,6 @@ public class NewClassRooms {
 
     private String classId;
     private String className;
-    private String teacherId;
     private List<RoomWIthBuildName> roomVoList;
 
     public String getClassId() {
@@ -27,14 +26,6 @@ public class NewClassRooms {
 
     public void setClassName(String className) {
         this.className = className;
-    }
-
-    public String getTeacherId() {
-        return teacherId;
-    }
-
-    public void setTeacherId(String teacherId) {
-        this.teacherId = teacherId;
     }
 
     public List<RoomWIthBuildName> getRoomVoList() {

@@ -1,14 +1,15 @@
 package com.xiaohei.auser.wenliapp.normalActivity;
 
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.v7.app.AppCompatActivity;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.xiaohei.auser.wenliapp.R;
 import com.xiaohei.auser.wenliapp.dialog.XhDialog;
+import com.xiaohei.auser.wenliapp.utils.StatusBarFullTransparentTools;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -31,6 +32,12 @@ public class AboutActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_about);
+
+        /**
+         * 增加沉浸式
+         */
+        StatusBarFullTransparentTools.addAll(true,this);
+
         ButterKnife.bind(this);
 
     }

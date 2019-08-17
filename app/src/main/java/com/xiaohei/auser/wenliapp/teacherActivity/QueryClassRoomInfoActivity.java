@@ -3,7 +3,7 @@ package com.xiaohei.auser.wenliapp.teacherActivity;
 import android.app.Dialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
+import androidx.annotation.Nullable;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.LinearLayout;
@@ -22,7 +22,7 @@ import com.xiaohei.auser.wenliapp.utils.IntentUtil;
 import com.xiaohei.auser.wenliapp.net.XhOkHttps;
 import com.xiaohei.auser.wenliapp.sp.SpConstants;
 import com.xiaohei.auser.wenliapp.sp.XhSp;
-import com.xiaohei.auser.wenliapp.utils.XhLogUtil;
+import com.xiaohei.auser.wenliapp.utils.StatusBarFullTransparentTools;
 import com.xiaohei.auser.wenliapp.wenlientity.NewStudent;
 import com.xiaohei.auser.wenliapp.wenlientity.Result;
 import com.xiaohei.auser.wenliapp.wenlientity.RoomWIthHeadID;
@@ -64,6 +64,12 @@ public class QueryClassRoomInfoActivity extends SuperActivity implements View.On
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dep_room_info);
+
+        /**
+         * 增加沉浸式
+         */
+        StatusBarFullTransparentTools.addAll(true,this);
+
         roomid = getIntent().getExtras().getString("roomid");
         ButterKnife.bind(this);
         init();

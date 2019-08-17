@@ -1,7 +1,7 @@
 package com.xiaohei.auser.wenliapp.teacherActivity;
 
 import android.os.Bundle;
-import android.support.annotation.Nullable;
+import androidx.annotation.Nullable;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -9,6 +9,7 @@ import android.widget.TextView;
 import com.xiaohei.auser.wenliapp.Dao.TeacherDao;
 import com.xiaohei.auser.wenliapp.R;
 import com.xiaohei.auser.wenliapp.SuperActivity;
+import com.xiaohei.auser.wenliapp.utils.StatusBarFullTransparentTools;
 import com.xiaohei.auser.wenliapp.wenlientity.dbentity.DbTeacher;
 
 import butterknife.BindView;
@@ -38,6 +39,12 @@ public class TeacherInfoActivity extends SuperActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_teacherinfo);
+
+        /**
+         * 增加沉浸式
+         */
+        StatusBarFullTransparentTools.addAll(true,this);
+
         ButterKnife.bind(this);
         init();
     }

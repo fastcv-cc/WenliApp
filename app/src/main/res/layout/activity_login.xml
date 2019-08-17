@@ -33,7 +33,7 @@
         android:paddingRight="10dp"
         android:layout_height="wrap_content">
 
-        <android.support.design.widget.TextInputLayout
+        <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:id="@+id/tl_username"
             android:layout_marginTop="30dp"
@@ -48,9 +48,9 @@
                 android:numeric="integer"
                 android:layout_height="wrap_content" />
 
-        </android.support.design.widget.TextInputLayout>
+        </com.google.android.material.textfield.TextInputLayout>
 
-        <android.support.design.widget.TextInputLayout
+        <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:id="@+id/tl_password"
             android:layout_marginTop="20dp"
@@ -66,7 +66,7 @@
                 android:password="true"
                 android:layout_height="wrap_content" />
 
-        </android.support.design.widget.TextInputLayout>
+        </com.google.android.material.textfield.TextInputLayout>
         
         <LinearLayout
             android:layout_width="match_parent"

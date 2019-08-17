@@ -3,7 +3,7 @@ package com.xiaohei.auser.wenliapp.studentActivity;
 import android.app.Dialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
+import androidx.annotation.Nullable;
 import android.text.InputType;
 import android.util.Log;
 import android.view.View;
@@ -25,6 +25,7 @@ import com.xiaohei.auser.wenliapp.login.LoginActivity;
 import com.xiaohei.auser.wenliapp.net.XhOkHttps;
 import com.xiaohei.auser.wenliapp.sp.SpConstants;
 import com.xiaohei.auser.wenliapp.sp.XhSp;
+import com.xiaohei.auser.wenliapp.utils.StatusBarFullTransparentTools;
 import com.xiaohei.auser.wenliapp.utils.XhLogUtil;
 import com.xiaohei.auser.wenliapp.wenlientity.Result;
 
@@ -65,6 +66,12 @@ public class StudentChangePasswordActivity extends SuperActivity implements Comp
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_student_changepass);
+
+        /**
+         * 增加沉浸式
+         */
+        StatusBarFullTransparentTools.addAll(true,this);
+
         ButterKnife.bind(this);
         init();
     }

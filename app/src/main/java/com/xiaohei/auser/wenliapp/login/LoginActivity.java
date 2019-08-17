@@ -4,8 +4,8 @@ import android.app.Dialog;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
-import android.support.annotation.IdRes;
-import android.support.design.widget.TextInputLayout;
+import androidx.annotation.IdRes;
+import com.google.android.material.textfield.TextInputLayout;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
@@ -310,6 +310,7 @@ public class LoginActivity extends SuperActivity implements TextWatcher, RadioGr
             break;
             case 888:{
                 XhSnackBar.showResult(layout,"账号密码已失效，请重新登录");
+                XhSp.setSharedPreferences(LoginActivity.this, SpConstants.TOKEN,"");
             }
             break;
             case -1:{

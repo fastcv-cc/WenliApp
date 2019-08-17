@@ -3,7 +3,7 @@ package com.xiaohei.auser.wenliapp.teacherActivity;
 import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
+import androidx.annotation.Nullable;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.LinearLayout;
@@ -23,6 +23,7 @@ import com.xiaohei.auser.wenliapp.sp.SpConstants;
 import com.xiaohei.auser.wenliapp.sp.XhSp;
 import com.xiaohei.auser.wenliapp.utils.IntentUtil;
 import com.xiaohei.auser.wenliapp.net.XhOkHttps;
+import com.xiaohei.auser.wenliapp.utils.StatusBarFullTransparentTools;
 import com.xiaohei.auser.wenliapp.wenlientity.NewWeektext;
 import com.xiaohei.auser.wenliapp.wenlientity.Result;
 
@@ -61,6 +62,12 @@ public class ReadWeekActivity extends SuperActivity implements View.OnLongClickL
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_readweek);
+
+        /**
+         * 增加沉浸式
+         */
+        StatusBarFullTransparentTools.addAll(true,this);
+
         ButterKnife.bind(this);
         roomid = getIntent().getExtras().getString("roomid");
         init();

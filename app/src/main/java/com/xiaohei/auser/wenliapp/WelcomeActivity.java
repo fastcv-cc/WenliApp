@@ -113,4 +113,6 @@ public class WelcomeActivity extends SuperActivity implements View.OnClickListen
             break;
         }
     }
+
+
 }

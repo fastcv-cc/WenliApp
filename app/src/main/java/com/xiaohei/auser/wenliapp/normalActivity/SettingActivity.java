@@ -1,8 +1,8 @@
 package com.xiaohei.auser.wenliapp.normalActivity;
 
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.v7.app.AppCompatActivity;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ImageView;
@@ -15,6 +15,7 @@ import com.xiaohei.auser.wenliapp.basedata.BaseData;
 import com.xiaohei.auser.wenliapp.sp.SpConstants;
 import com.xiaohei.auser.wenliapp.sp.XhSp;
 import com.xiaohei.auser.wenliapp.utils.IntentUtil;
+import com.xiaohei.auser.wenliapp.utils.StatusBarFullTransparentTools;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -38,6 +39,12 @@ public class SettingActivity extends AppCompatActivity implements View.OnClickLi
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_set);
+
+        /**
+         * 增加沉浸式
+         */
+        StatusBarFullTransparentTools.addAll(true,this);
+
         ButterKnife.bind(this);
         init();
     }

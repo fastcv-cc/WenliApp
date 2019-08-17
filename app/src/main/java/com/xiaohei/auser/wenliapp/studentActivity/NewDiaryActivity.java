@@ -3,8 +3,8 @@ package com.xiaohei.auser.wenliapp.studentActivity;
 import android.app.Dialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
-import android.support.annotation.IdRes;
-import android.support.annotation.Nullable;
+import androidx.annotation.IdRes;
+import androidx.annotation.Nullable;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
@@ -25,6 +25,7 @@ import com.xiaohei.auser.wenliapp.dialog.XhDialog;
 import com.xiaohei.auser.wenliapp.dialog.XhSnackBar;
 import com.xiaohei.auser.wenliapp.login.LoginActivity;
 import com.xiaohei.auser.wenliapp.utils.IntentUtil;
+import com.xiaohei.auser.wenliapp.utils.StatusBarFullTransparentTools;
 import com.xiaohei.auser.wenliapp.utils.Trans;
 import com.xiaohei.auser.wenliapp.wenlievent.NetEvent;
 import com.xiaohei.auser.wenliapp.minterface.XhHttpInterface;
@@ -146,6 +147,12 @@ public class NewDiaryActivity extends SuperActivity implements View.OnClickListe
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_newdiary);
+
+        /**
+         * 增加沉浸式
+         */
+        StatusBarFullTransparentTools.addAll(true,this);
+
         ButterKnife.bind(this);
         init();
     }
@@ -255,7 +262,13 @@ public class NewDiaryActivity extends SuperActivity implements View.OnClickListe
             finish();
         }
         else if(v.getId() == R.id.img_send){
-            sendMes(WenLiURL.SEND_WEEKTEXT);
+
+            XhDialog.DialogWithListener(NewDiaryActivity.this, "提示", "是否确认发送？", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialogInterface, int i) {
+                    sendMes(WenLiURL.SEND_WEEKTEXT);
+                }
+            });
         }
     }
 

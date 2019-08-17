@@ -2,9 +2,9 @@ package com.xiaohei.auser.wenliapp.fragment;
 
 import android.app.Dialog;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.design.widget.FloatingActionButton;
-import android.support.v4.app.Fragment;
+import androidx.annotation.Nullable;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,7 +17,6 @@ import android.widget.ListView;
 import com.google.gson.reflect.TypeToken;
 import com.xiaohei.auser.wenliapp.Dao.TeacherDao;
 import com.xiaohei.auser.wenliapp.R;
-import com.xiaohei.auser.wenliapp.adapter.StudentWeekAdapter;
 import com.xiaohei.auser.wenliapp.adapter.TeacherNoReadWeekAdapter;
 import com.xiaohei.auser.wenliapp.dialog.XhDialog;
 import com.xiaohei.auser.wenliapp.wenlientity.NoReadWeekText;
@@ -29,7 +28,6 @@ import com.xiaohei.auser.wenliapp.net.XhOkHttps;
 import com.xiaohei.auser.wenliapp.sp.SpConstants;
 import com.xiaohei.auser.wenliapp.sp.XhSp;
 import com.xiaohei.auser.wenliapp.teacherActivity.ShowWeekActivity;
-import com.xiaohei.auser.wenliapp.wenlientity.NewWeektext;
 import com.xiaohei.auser.wenliapp.wenlientity.Result;
 
 import org.greenrobot.eventbus.EventBus;

@@ -1,0 +1,362 @@
+-- Merging decision tree log ---
+manifest
+ADDED from D:\ProjectSpace\ASproject\WenliApp\app\src\main\AndroidManifest.xml:2:1-64:12
+INJECTED from D:\ProjectSpace\ASproject\WenliApp\app\src\main\AndroidManifest.xml:2:1-64:12
+INJECTED from D:\ProjectSpace\ASproject\WenliApp\app\src\main\AndroidManifest.xml:2:1-64:12
+INJECTED from D:\ProjectSpace\ASproject\WenliApp\app\src\main\AndroidManifest.xml:2:1-64:12
+MERGED from [androidx.constraintlayout:constraintlayout:1.1.3] C:\Users\machenike\.gradle\wrapper\dists\gradle-4.6-all\caches\transforms-2\files-2.1\378e8f88f3b3b50504c692c0196f9961\AndroidManifest.xml:2:1-11:12
+MERGED from [com.jakewharton:butterknife:10.0.0] C:\Users\machenike\.gradle\wrapper\dists\gradle-4.6-all\caches\transforms-2\files-2.1\bc7b608310545db1418506f95e820a4d\AndroidManifest.xml:2:1-7:12
+MERGED from [:updateapp] D:\ProjectSpace\ASproject\WenliApp\updateapp\build\intermediates\library_manifest\debug\AndroidManifest.xml:2:1-40:12
+MERGED from [com.google.android.material:material:1.0.0] C:\Users\machenike\.gradle\wrapper\dists\gradle-4.6-all\caches\transforms-2\files-2.1\5f6945c11ae4594df3731cfab561dc26\AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.appcompat:appcompat:1.0.2] C:\Users\machenike\.gradle\wrapper\dists\gradle-4.6-all\caches\transforms-2\files-2.1\57818df3c2df46210f653796cda8d9c2\AndroidManifest.xml:17:1-22:12
+MERGED from [org.litepal.android:core:1.6.1] C:\Users\machenike\.gradle\wrapper\dists\gradle-4.6-all\caches\transforms-2\files-2.1\5613477f035483087c6706745e349f13\AndroidManifest.xml:2:1-16:12
+MERGED from [com.jakewharton:butterknife-runtime:10.0.0] C:\Users\machenike\.gradle\wrapper\dists\gradle-4.6-all\caches\transforms-2\files-2.1\9136e0402dbd7cf7676f4987840a887d\AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.fragment:fragment:1.0.0] C:\Users\machenike\.gradle\wrapper\dists\gradle-4.6-all\caches\transforms-2\files-2.1\cbacdcb271c3dc4248e4aa4b822ac2b6\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.recyclerview:recyclerview:1.0.0] C:\Users\machenike\.gradle\wrapper\dists\gradle-4.6-all\caches\transforms-2\files-2.1\eadfa2a16601a2b362b27bb5192d6b60\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.vectordrawable:vectordrawable-animated:1.0.0] C:\Users\machenike\.gradle\wrapper\dists\gradle-4.6-all\caches\transforms-2\files-2.1\0470aa81cd92eae922a374f0aeec1a94\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.legacy:legacy-support-core-ui:1.0.0] C:\Users\machenike\.gradle\wrapper\dists\gradle-4.6-all\caches\transforms-2\files-2.1\4bc014a3a6e2cf436e10db50d7634e80\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.legacy:legacy-support-core-utils:1.0.0] C:\Users\machenike\.gradle\wrapper\dists\gradle-4.6-all\caches\transforms-2\files-2.1\de1118f2fa37fd932881662052703413\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.transition:transition:1.0.0] C:\Users\machenike\.gradle\wrapper\dists\gradle-4.6-all\caches\transforms-2\files-2.1\0430ea2db01567a385e7477bdeade315\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.cardview:cardview:1.0.0] C:\Users\machenike\.gradle\wrapper\dists\gradle-4.6-all\caches\transforms-2\files-2.1\4d5d6af10e8408d9b5ddb8f540d7714f\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.vectordrawable:vectordrawable:1.0.1] C:\Users\machenike\.gradle\wrapper\dists\gradle-4.6-all\caches\transforms-2\files-2.1\523b115fbb70a5514ed0f642484bd284\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.viewpager:viewpager:1.0.0] C:\Users\machenike\.gradle\wrapper\dists\gradle-4.6-all\caches\transforms-2\files-2.1\ea3060eeb596c397069bf1520af36292\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.coordinatorlayout:coordinatorlayout:1.0.0] C:\Users\machenike\.gradle\wrapper\dists\gradle-4.6-all\caches\transforms-2\files-2.1\449bf5d155f5c3d3a2c9c28e1f971f52\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.drawerlayout:drawerlayout:1.0.0] C:\Users\machenike\.gradle\wrapper\dists\gradle-4.6-all\caches\transforms-2\files-2.1\9b48b83b4c1dbc36f20c3b6660bb4f35\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.slidingpanelayout:slidingpanelayout:1.0.0] C:\Users\machenike\.gradle\wrapper\dists\gradle-4.6-all\caches\transforms-2\files-2.1\1f015fb28a6b9457bc9358648cd26508\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.customview:customview:1.0.0] C:\Users\machenike\.gradle\wrapper\dists\gradle-4.6-all\caches\transforms-2\files-2.1\6f7b8b3a1fb2ad66a9f4d398047aa65a\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.swiperefreshlayout:swiperefreshlayout:1.0.0] C:\Users\machenike\.gradle\wrapper\dists\gradle-4.6-all\caches\transforms-2\files-2.1\3a6fe1e8ca091174bc5a700b0e78c64c\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.asynclayoutinflater:asynclayoutinflater:1.0.0] C:\Users\machenike\.gradle\wrapper\dists\gradle-4.6-all\caches\transforms-2\files-2.1\4c28cd25cfcc44691719efca777a1b0f\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.loader:loader:1.0.0] C:\Users\machenike\.gradle\wrapper\dists\gradle-4.6-all\caches\transforms-2\files-2.1\b4d4f515eaf84b8e1e3d35f72dbb24d9\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.core:core:1.0.1] C:\Users\machenike\.gradle\wrapper\dists\gradle-4.6-all\caches\transforms-2\files-2.1\6159867cbf723a2ef472a4835a172d72\AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.0.0] C:\Users\machenike\.gradle\wrapper\dists\gradle-4.6-all\caches\transforms-2\files-2.1\16b4dda7e90b65648c29b8beb22d5719\AndroidManifest.xml:17:1-25:12
+MERGED from [androidx.cursoradapter:cursoradapter:1.0.0] C:\Users\machenike\.gradle\wrapper\dists\gradle-4.6-all\caches\transforms-2\files-2.1\de4fda55dbe9e009d7c3bb5143e12cbc\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.interpolator:interpolator:1.0.0] C:\Users\machenike\.gradle\wrapper\dists\gradle-4.6-all\caches\transforms-2\files-2.1\b604f36dc910f15dd2924e5533b6f65f\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.documentfile:documentfile:1.0.0] C:\Users\machenike\.gradle\wrapper\dists\gradle-4.6-all\caches\transforms-2\files-2.1\924346a64e329ffb7fc95ba9ec580c66\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.localbroadcastmanager:localbroadcastmanager:1.0.0] C:\Users\machenike\.gradle\wrapper\dists\gradle-4.6-all\caches\transforms-2\files-2.1\fe12e19dc7682e71f80dafbc761352f2\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.print:print:1.0.0] C:\Users\machenike\.gradle\wrapper\dists\gradle-4.6-all\caches\transforms-2\files-2.1\5514d7cec531069906b33f43f15dee1d\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.0.0] C:\Users\machenike\.gradle\wrapper\dists\gradle-4.6-all\caches\transforms-2\files-2.1\9366ce1398a2397da6ee2436092c49db\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.lifecycle:lifecycle-runtime:2.0.0] C:\Users\machenike\.gradle\wrapper\dists\gradle-4.6-all\caches\transforms-2\files-2.1\e0f8ae7835693cc4031dc037ccdcd4c5\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.lifecycle:lifecycle-livedata:2.0.0] C:\Users\machenike\.gradle\wrapper\dists\gradle-4.6-all\caches\transforms-2\files-2.1\94667b9efd8f140530ecbaa413dd97cd\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.0.0] C:\Users\machenike\.gradle\wrapper\dists\gradle-4.6-all\caches\transforms-2\files-2.1\eff04266a5cc702f4930386dd7a285da\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.arch.core:core-runtime:2.0.0] C:\Users\machenike\.gradle\wrapper\dists\gradle-4.6-all\caches\transforms-2\files-2.1\4cae0c68e92b893301d63168fab2ecf6\AndroidManifest.xml:17:1-22:12
+INJECTED from D:\ProjectSpace\ASproject\WenliApp\app\src\main\AndroidManifest.xml:2:1-64:12
+INJECTED from D:\ProjectSpace\ASproject\WenliApp\app\src\main\AndroidManifest.xml:2:1-64:12
+INJECTED from D:\ProjectSpace\ASproject\WenliApp\app\src\main\AndroidManifest.xml:2:1-64:12
+	package
+		ADDED from D:\ProjectSpace\ASproject\WenliApp\app\src\main\AndroidManifest.xml:4:5-41
+		INJECTED from D:\ProjectSpace\ASproject\WenliApp\app\src\main\AndroidManifest.xml
+		INJECTED from D:\ProjectSpace\ASproject\WenliApp\app\src\main\AndroidManifest.xml
+	android:versionName
+		INJECTED from D:\ProjectSpace\ASproject\WenliApp\app\src\main\AndroidManifest.xml
+		ADDED from D:\ProjectSpace\ASproject\WenliApp\app\src\main\AndroidManifest.xml:2:1-64:12
+		INJECTED from D:\ProjectSpace\ASproject\WenliApp\app\src\main\AndroidManifest.xml
+	xmlns:tools
+		ADDED from D:\ProjectSpace\ASproject\WenliApp\app\src\main\AndroidManifest.xml:3:5-51
+	android:versionCode
+		INJECTED from D:\ProjectSpace\ASproject\WenliApp\app\src\main\AndroidManifest.xml
+		ADDED from D:\ProjectSpace\ASproject\WenliApp\app\src\main\AndroidManifest.xml:2:1-64:12
+		INJECTED from D:\ProjectSpace\ASproject\WenliApp\app\src\main\AndroidManifest.xml
+	xmlns:android
+		ADDED from D:\ProjectSpace\ASproject\WenliApp\app\src\main\AndroidManifest.xml:2:11-69
+uses-permission#android.permission.READ_PHONE_STATE
+ADDED from D:\ProjectSpace\ASproject\WenliApp\app\src\main\AndroidManifest.xml:6:5-74
+MERGED from [:updateapp] D:\ProjectSpace\ASproject\WenliApp\updateapp\build\intermediates\library_manifest\debug\AndroidManifest.xml:11:5-75
+MERGED from [:updateapp] D:\ProjectSpace\ASproject\WenliApp\updateapp\build\intermediates\library_manifest\debug\AndroidManifest.xml:11:5-75
+	android:name
+		ADDED from D:\ProjectSpace\ASproject\WenliApp\app\src\main\AndroidManifest.xml:6:22-72
+uses-permission#android.permission.ACCESS_NETWORK_STATE
+ADDED from D:\ProjectSpace\ASproject\WenliApp\app\src\main\AndroidManifest.xml:7:5-78
+MERGED from [:updateapp] D:\ProjectSpace\ASproject\WenliApp\updateapp\build\intermediates\library_manifest\debug\AndroidManifest.xml:13:5-79
+MERGED from [:updateapp] D:\ProjectSpace\ASproject\WenliApp\updateapp\build\intermediates\library_manifest\debug\AndroidManifest.xml:13:5-79
+MERGED from [:updateapp] D:\ProjectSpace\ASproject\WenliApp\updateapp\build\intermediates\library_manifest\debug\AndroidManifest.xml:16:5-79
+MERGED from [:updateapp] D:\ProjectSpace\ASproject\WenliApp\updateapp\build\intermediates\library_manifest\debug\AndroidManifest.xml:16:5-79
+	android:name
+		ADDED from D:\ProjectSpace\ASproject\WenliApp\app\src\main\AndroidManifest.xml:7:22-76
+uses-permission#android.permission.ACCESS_WIFI_STATE
+ADDED from D:\ProjectSpace\ASproject\WenliApp\app\src\main\AndroidManifest.xml:8:5-75
+MERGED from [:updateapp] D:\ProjectSpace\ASproject\WenliApp\updateapp\build\intermediates\library_manifest\debug\AndroidManifest.xml:14:5-76
+MERGED from [:updateapp] D:\ProjectSpace\ASproject\WenliApp\updateapp\build\intermediates\library_manifest\debug\AndroidManifest.xml:14:5-76
+	android:name
+		ADDED from D:\ProjectSpace\ASproject\WenliApp\app\src\main\AndroidManifest.xml:8:22-73
+uses-permission#android.permission.INTERNET
+ADDED from D:\ProjectSpace\ASproject\WenliApp\app\src\main\AndroidManifest.xml:9:5-66
+MERGED from [:updateapp] D:\ProjectSpace\ASproject\WenliApp\updateapp\build\intermediates\library_manifest\debug\AndroidManifest.xml:15:5-67
+MERGED from [:updateapp] D:\ProjectSpace\ASproject\WenliApp\updateapp\build\intermediates\library_manifest\debug\AndroidManifest.xml:15:5-67
+	android:name
+		ADDED from D:\ProjectSpace\ASproject\WenliApp\app\src\main\AndroidManifest.xml:9:22-64
+uses-permission#android.permission.CALL_PHONE
+ADDED from D:\ProjectSpace\ASproject\WenliApp\app\src\main\AndroidManifest.xml:10:5-68
+MERGED from [:updateapp] D:\ProjectSpace\ASproject\WenliApp\updateapp\build\intermediates\library_manifest\debug\AndroidManifest.xml:17:5-69
+MERGED from [:updateapp] D:\ProjectSpace\ASproject\WenliApp\updateapp\build\intermediates\library_manifest\debug\AndroidManifest.xml:17:5-69
+	android:name
+		ADDED from D:\ProjectSpace\ASproject\WenliApp\app\src\main\AndroidManifest.xml:10:22-66
+uses-permission#android.permission.SYSTEM_ALERT_WINDOW
+ADDED from D:\ProjectSpace\ASproject\WenliApp\app\src\main\AndroidManifest.xml:11:5-78
+MERGED from [:updateapp] D:\ProjectSpace\ASproject\WenliApp\updateapp\build\intermediates\library_manifest\debug\AndroidManifest.xml:19:5-78
+MERGED from [:updateapp] D:\ProjectSpace\ASproject\WenliApp\updateapp\build\intermediates\library_manifest\debug\AndroidManifest.xml:19:5-78
+	android:name
+		ADDED from D:\ProjectSpace\ASproject\WenliApp\app\src\main\AndroidManifest.xml:11:22-75
+application
+ADDED from D:\ProjectSpace\ASproject\WenliApp\app\src\main\AndroidManifest.xml:13:5-62:19
+MERGED from [androidx.constraintlayout:constraintlayout:1.1.3] C:\Users\machenike\.gradle\wrapper\dists\gradle-4.6-all\caches\transforms-2\files-2.1\378e8f88f3b3b50504c692c0196f9961\AndroidManifest.xml:9:5-20
+MERGED from [androidx.constraintlayout:constraintlayout:1.1.3] C:\Users\machenike\.gradle\wrapper\dists\gradle-4.6-all\caches\transforms-2\files-2.1\378e8f88f3b3b50504c692c0196f9961\AndroidManifest.xml:9:5-20
+MERGED from [:updateapp] D:\ProjectSpace\ASproject\WenliApp\updateapp\build\intermediates\library_manifest\debug\AndroidManifest.xml:25:5-38:19
+MERGED from [:updateapp] D:\ProjectSpace\ASproject\WenliApp\updateapp\build\intermediates\library_manifest\debug\AndroidManifest.xml:25:5-38:19
+MERGED from [com.google.android.material:material:1.0.0] C:\Users\machenike\.gradle\wrapper\dists\gradle-4.6-all\caches\transforms-2\files-2.1\5f6945c11ae4594df3731cfab561dc26\AndroidManifest.xml:22:5-20
+MERGED from [com.google.android.material:material:1.0.0] C:\Users\machenike\.gradle\wrapper\dists\gradle-4.6-all\caches\transforms-2\files-2.1\5f6945c11ae4594df3731cfab561dc26\AndroidManifest.xml:22:5-20
+MERGED from [org.litepal.android:core:1.6.1] C:\Users\machenike\.gradle\wrapper\dists\gradle-4.6-all\caches\transforms-2\files-2.1\5613477f035483087c6706745e349f13\AndroidManifest.xml:11:5-14:19
+MERGED from [org.litepal.android:core:1.6.1] C:\Users\machenike\.gradle\wrapper\dists\gradle-4.6-all\caches\transforms-2\files-2.1\5613477f035483087c6706745e349f13\AndroidManifest.xml:11:5-14:19
+MERGED from [androidx.core:core:1.0.1] C:\Users\machenike\.gradle\wrapper\dists\gradle-4.6-all\caches\transforms-2\files-2.1\6159867cbf723a2ef472a4835a172d72\AndroidManifest.xml:22:5-89
+MERGED from [androidx.core:core:1.0.1] C:\Users\machenike\.gradle\wrapper\dists\gradle-4.6-all\caches\transforms-2\files-2.1\6159867cbf723a2ef472a4835a172d72\AndroidManifest.xml:22:5-89
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.0.0] C:\Users\machenike\.gradle\wrapper\dists\gradle-4.6-all\caches\transforms-2\files-2.1\16b4dda7e90b65648c29b8beb22d5719\AndroidManifest.xml:22:5-23:19
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.0.0] C:\Users\machenike\.gradle\wrapper\dists\gradle-4.6-all\caches\transforms-2\files-2.1\16b4dda7e90b65648c29b8beb22d5719\AndroidManifest.xml:22:5-23:19
+	android:appComponentFactory
+		ADDED from [androidx.core:core:1.0.1] C:\Users\machenike\.gradle\wrapper\dists\gradle-4.6-all\caches\transforms-2\files-2.1\6159867cbf723a2ef472a4835a172d72\AndroidManifest.xml:22:18-86
+	android:supportsRtl
+		ADDED from D:\ProjectSpace\ASproject\WenliApp\app\src\main\AndroidManifest.xml:19:9-35
+	android:label
+		ADDED from D:\ProjectSpace\ASproject\WenliApp\app\src\main\AndroidManifest.xml:17:9-41
+	tools:ignore
+		ADDED from D:\ProjectSpace\ASproject\WenliApp\app\src\main\AndroidManifest.xml:21:9-48
+	android:roundIcon
+		ADDED from D:\ProjectSpace\ASproject\WenliApp\app\src\main\AndroidManifest.xml:18:9-54
+	android:icon
+		ADDED from D:\ProjectSpace\ASproject\WenliApp\app\src\main\AndroidManifest.xml:16:9-38
+	android:allowBackup
+		ADDED from D:\ProjectSpace\ASproject\WenliApp\app\src\main\AndroidManifest.xml:14:9-35
+	android:theme
+		ADDED from D:\ProjectSpace\ASproject\WenliApp\app\src\main\AndroidManifest.xml:20:9-52
+	android:name
+		ADDED from D:\ProjectSpace\ASproject\WenliApp\app\src\main\AndroidManifest.xml:15:9-47
+activity#com.xiaohei.auser.wenliapp.WelcomeActivity
+ADDED from D:\ProjectSpace\ASproject\WenliApp\app\src\main\AndroidManifest.xml:22:9-29:20
+	android:screenOrientation
+		ADDED from D:\ProjectSpace\ASproject\WenliApp\app\src\main\AndroidManifest.xml:23:13-49
+	android:name
+		ADDED from D:\ProjectSpace\ASproject\WenliApp\app\src\main\AndroidManifest.xml:22:19-50
+intent-filter#action:name:android.intent.action.MAIN+category:name:android.intent.category.LAUNCHER
+ADDED from D:\ProjectSpace\ASproject\WenliApp\app\src\main\AndroidManifest.xml:24:13-28:29
+action#android.intent.action.MAIN
+ADDED from D:\ProjectSpace\ASproject\WenliApp\app\src\main\AndroidManifest.xml:25:17-69
+	android:name
+		ADDED from D:\ProjectSpace\ASproject\WenliApp\app\src\main\AndroidManifest.xml:25:25-66
+category#android.intent.category.LAUNCHER
+ADDED from D:\ProjectSpace\ASproject\WenliApp\app\src\main\AndroidManifest.xml:27:17-77
+	android:name
+		ADDED from D:\ProjectSpace\ASproject\WenliApp\app\src\main\AndroidManifest.xml:27:27-74
+activity#com.xiaohei.auser.wenliapp.login.LoginActivity
+ADDED from D:\ProjectSpace\ASproject\WenliApp\app\src\main\AndroidManifest.xml:30:9-31:51
+	android:screenOrientation
+		ADDED from D:\ProjectSpace\ASproject\WenliApp\app\src\main\AndroidManifest.xml:31:13-49
+	android:name
+		ADDED from D:\ProjectSpace\ASproject\WenliApp\app\src\main\AndroidManifest.xml:30:19-54
+activity#com.xiaohei.auser.wenliapp.studentActivity.StudentMainActivity
+ADDED from D:\ProjectSpace\ASproject\WenliApp\app\src\main\AndroidManifest.xml:32:9-33:51
+	android:screenOrientation
+		ADDED from D:\ProjectSpace\ASproject\WenliApp\app\src\main\AndroidManifest.xml:33:13-49
+	android:name
+		ADDED from D:\ProjectSpace\ASproject\WenliApp\app\src\main\AndroidManifest.xml:32:19-70
+activity#com.xiaohei.auser.wenliapp.studentActivity.StudentInfoActivity
+ADDED from D:\ProjectSpace\ASproject\WenliApp\app\src\main\AndroidManifest.xml:34:9-35:51
+	android:screenOrientation
+		ADDED from D:\ProjectSpace\ASproject\WenliApp\app\src\main\AndroidManifest.xml:35:13-49
+	android:name
+		ADDED from D:\ProjectSpace\ASproject\WenliApp\app\src\main\AndroidManifest.xml:34:19-70
+activity#com.xiaohei.auser.wenliapp.studentActivity.NewDiaryActivity
+ADDED from D:\ProjectSpace\ASproject\WenliApp\app\src\main\AndroidManifest.xml:36:9-37:51
+	android:screenOrientation
+		ADDED from D:\ProjectSpace\ASproject\WenliApp\app\src\main\AndroidManifest.xml:37:13-49
+	android:name
+		ADDED from D:\ProjectSpace\ASproject\WenliApp\app\src\main\AndroidManifest.xml:36:19-67
+activity#com.xiaohei.auser.wenliapp.studentActivity.StudentChangePasswordActivity
+ADDED from D:\ProjectSpace\ASproject\WenliApp\app\src\main\AndroidManifest.xml:38:9-39:51
+	android:screenOrientation
+		ADDED from D:\ProjectSpace\ASproject\WenliApp\app\src\main\AndroidManifest.xml:39:13-49
+	android:name
+		ADDED from D:\ProjectSpace\ASproject\WenliApp\app\src\main\AndroidManifest.xml:38:19-80
+activity#com.xiaohei.auser.wenliapp.normalActivity.SettingActivity
+ADDED from D:\ProjectSpace\ASproject\WenliApp\app\src\main\AndroidManifest.xml:40:9-41:51
+	android:screenOrientation
+		ADDED from D:\ProjectSpace\ASproject\WenliApp\app\src\main\AndroidManifest.xml:41:13-49
+	android:name
+		ADDED from D:\ProjectSpace\ASproject\WenliApp\app\src\main\AndroidManifest.xml:40:19-65
+activity#com.xiaohei.auser.wenliapp.teacherActivity.TeacherMainActivity
+ADDED from D:\ProjectSpace\ASproject\WenliApp\app\src\main\AndroidManifest.xml:42:9-43:51
+	android:screenOrientation
+		ADDED from D:\ProjectSpace\ASproject\WenliApp\app\src\main\AndroidManifest.xml:43:13-49
+	android:name
+		ADDED from D:\ProjectSpace\ASproject\WenliApp\app\src\main\AndroidManifest.xml:42:19-70
+activity#com.xiaohei.auser.wenliapp.normalActivity.AboutActivity
+ADDED from D:\ProjectSpace\ASproject\WenliApp\app\src\main\AndroidManifest.xml:44:9-45:51
+	android:screenOrientation
+		ADDED from D:\ProjectSpace\ASproject\WenliApp\app\src\main\AndroidManifest.xml:45:13-49
+	android:name
+		ADDED from D:\ProjectSpace\ASproject\WenliApp\app\src\main\AndroidManifest.xml:44:19-63
+activity#com.xiaohei.auser.wenliapp.teacherActivity.TeacherInfoActivity
+ADDED from D:\ProjectSpace\ASproject\WenliApp\app\src\main\AndroidManifest.xml:46:9-47:51
+	android:screenOrientation
+		ADDED from D:\ProjectSpace\ASproject\WenliApp\app\src\main\AndroidManifest.xml:47:13-49
+	android:name
+		ADDED from D:\ProjectSpace\ASproject\WenliApp\app\src\main\AndroidManifest.xml:46:19-70
+activity#com.xiaohei.auser.wenliapp.teacherActivity.TeacherChangePasswordActivity
+ADDED from D:\ProjectSpace\ASproject\WenliApp\app\src\main\AndroidManifest.xml:48:9-49:51
+	android:screenOrientation
+		ADDED from D:\ProjectSpace\ASproject\WenliApp\app\src\main\AndroidManifest.xml:49:13-49
+	android:name
+		ADDED from D:\ProjectSpace\ASproject\WenliApp\app\src\main\AndroidManifest.xml:48:19-80
+activity#com.xiaohei.auser.wenliapp.normalActivity.IdealActivity
+ADDED from D:\ProjectSpace\ASproject\WenliApp\app\src\main\AndroidManifest.xml:50:9-51:51
+	android:screenOrientation
+		ADDED from D:\ProjectSpace\ASproject\WenliApp\app\src\main\AndroidManifest.xml:51:13-49
+	android:name
+		ADDED from D:\ProjectSpace\ASproject\WenliApp\app\src\main\AndroidManifest.xml:50:19-63
+activity#com.xiaohei.auser.wenliapp.teacherActivity.QueryClassRoomInfoActivity
+ADDED from D:\ProjectSpace\ASproject\WenliApp\app\src\main\AndroidManifest.xml:52:9-53:51
+	android:screenOrientation
+		ADDED from D:\ProjectSpace\ASproject\WenliApp\app\src\main\AndroidManifest.xml:53:13-49
+	android:name
+		ADDED from D:\ProjectSpace\ASproject\WenliApp\app\src\main\AndroidManifest.xml:52:19-77
+activity#com.xiaohei.auser.wenliapp.studentActivity.ShowWeekActivity
+ADDED from D:\ProjectSpace\ASproject\WenliApp\app\src\main\AndroidManifest.xml:54:9-55:51
+	android:screenOrientation
+		ADDED from D:\ProjectSpace\ASproject\WenliApp\app\src\main\AndroidManifest.xml:55:13-49
+	android:name
+		ADDED from D:\ProjectSpace\ASproject\WenliApp\app\src\main\AndroidManifest.xml:54:19-67
+activity#com.xiaohei.auser.wenliapp.studentActivity.StudentRegisterActivity
+ADDED from D:\ProjectSpace\ASproject\WenliApp\app\src\main\AndroidManifest.xml:56:9-57:51
+	android:screenOrientation
+		ADDED from D:\ProjectSpace\ASproject\WenliApp\app\src\main\AndroidManifest.xml:57:13-49
+	android:name
+		ADDED from D:\ProjectSpace\ASproject\WenliApp\app\src\main\AndroidManifest.xml:56:19-74
+activity#com.xiaohei.auser.wenliapp.teacherActivity.ReadWeekActivity
+ADDED from D:\ProjectSpace\ASproject\WenliApp\app\src\main\AndroidManifest.xml:58:9-59:51
+	android:screenOrientation
+		ADDED from D:\ProjectSpace\ASproject\WenliApp\app\src\main\AndroidManifest.xml:59:13-49
+	android:name
+		ADDED from D:\ProjectSpace\ASproject\WenliApp\app\src\main\AndroidManifest.xml:58:19-67
+activity#com.xiaohei.auser.wenliapp.teacherActivity.ShowWeekActivity
+ADDED from D:\ProjectSpace\ASproject\WenliApp\app\src\main\AndroidManifest.xml:60:9-61:51
+	android:screenOrientation
+		ADDED from D:\ProjectSpace\ASproject\WenliApp\app\src\main\AndroidManifest.xml:61:13-49
+	android:name
+		ADDED from D:\ProjectSpace\ASproject\WenliApp\app\src\main\AndroidManifest.xml:60:19-67
+uses-sdk
+INJECTED from D:\ProjectSpace\ASproject\WenliApp\app\src\main\AndroidManifest.xml reason: use-sdk injection requested
+INJECTED from D:\ProjectSpace\ASproject\WenliApp\app\src\main\AndroidManifest.xml
+INJECTED from D:\ProjectSpace\ASproject\WenliApp\app\src\main\AndroidManifest.xml
+MERGED from [androidx.constraintlayout:constraintlayout:1.1.3] C:\Users\machenike\.gradle\wrapper\dists\gradle-4.6-all\caches\transforms-2\files-2.1\378e8f88f3b3b50504c692c0196f9961\AndroidManifest.xml:5:5-7:41
+MERGED from [androidx.constraintlayout:constraintlayout:1.1.3] C:\Users\machenike\.gradle\wrapper\dists\gradle-4.6-all\caches\transforms-2\files-2.1\378e8f88f3b3b50504c692c0196f9961\AndroidManifest.xml:5:5-7:41
+MERGED from [com.jakewharton:butterknife:10.0.0] C:\Users\machenike\.gradle\wrapper\dists\gradle-4.6-all\caches\transforms-2\files-2.1\bc7b608310545db1418506f95e820a4d\AndroidManifest.xml:5:5-44
+MERGED from [com.jakewharton:butterknife:10.0.0] C:\Users\machenike\.gradle\wrapper\dists\gradle-4.6-all\caches\transforms-2\files-2.1\bc7b608310545db1418506f95e820a4d\AndroidManifest.xml:5:5-44
+MERGED from [:updateapp] D:\ProjectSpace\ASproject\WenliApp\updateapp\build\intermediates\library_manifest\debug\AndroidManifest.xml:7:5-9:41
+MERGED from [:updateapp] D:\ProjectSpace\ASproject\WenliApp\updateapp\build\intermediates\library_manifest\debug\AndroidManifest.xml:7:5-9:41
+MERGED from [com.google.android.material:material:1.0.0] C:\Users\machenike\.gradle\wrapper\dists\gradle-4.6-all\caches\transforms-2\files-2.1\5f6945c11ae4594df3731cfab561dc26\AndroidManifest.xml:20:5-44
+MERGED from [com.google.android.material:material:1.0.0] C:\Users\machenike\.gradle\wrapper\dists\gradle-4.6-all\caches\transforms-2\files-2.1\5f6945c11ae4594df3731cfab561dc26\AndroidManifest.xml:20:5-44
+MERGED from [androidx.appcompat:appcompat:1.0.2] C:\Users\machenike\.gradle\wrapper\dists\gradle-4.6-all\caches\transforms-2\files-2.1\57818df3c2df46210f653796cda8d9c2\AndroidManifest.xml:20:5-44
+MERGED from [androidx.appcompat:appcompat:1.0.2] C:\Users\machenike\.gradle\wrapper\dists\gradle-4.6-all\caches\transforms-2\files-2.1\57818df3c2df46210f653796cda8d9c2\AndroidManifest.xml:20:5-44
+MERGED from [org.litepal.android:core:1.6.1] C:\Users\machenike\.gradle\wrapper\dists\gradle-4.6-all\caches\transforms-2\files-2.1\5613477f035483087c6706745e349f13\AndroidManifest.xml:7:5-9:41
+MERGED from [org.litepal.android:core:1.6.1] C:\Users\machenike\.gradle\wrapper\dists\gradle-4.6-all\caches\transforms-2\files-2.1\5613477f035483087c6706745e349f13\AndroidManifest.xml:7:5-9:41
+MERGED from [com.jakewharton:butterknife-runtime:10.0.0] C:\Users\machenike\.gradle\wrapper\dists\gradle-4.6-all\caches\transforms-2\files-2.1\9136e0402dbd7cf7676f4987840a887d\AndroidManifest.xml:5:5-44
+MERGED from [com.jakewharton:butterknife-runtime:10.0.0] C:\Users\machenike\.gradle\wrapper\dists\gradle-4.6-all\caches\transforms-2\files-2.1\9136e0402dbd7cf7676f4987840a887d\AndroidManifest.xml:5:5-44
+MERGED from [androidx.fragment:fragment:1.0.0] C:\Users\machenike\.gradle\wrapper\dists\gradle-4.6-all\caches\transforms-2\files-2.1\cbacdcb271c3dc4248e4aa4b822ac2b6\AndroidManifest.xml:20:5-44
+MERGED from [androidx.fragment:fragment:1.0.0] C:\Users\machenike\.gradle\wrapper\dists\gradle-4.6-all\caches\transforms-2\files-2.1\cbacdcb271c3dc4248e4aa4b822ac2b6\AndroidManifest.xml:20:5-44
+MERGED from [androidx.recyclerview:recyclerview:1.0.0] C:\Users\machenike\.gradle\wrapper\dists\gradle-4.6-all\caches\transforms-2\files-2.1\eadfa2a16601a2b362b27bb5192d6b60\AndroidManifest.xml:20:5-44
+MERGED from [androidx.recyclerview:recyclerview:1.0.0] C:\Users\machenike\.gradle\wrapper\dists\gradle-4.6-all\caches\transforms-2\files-2.1\eadfa2a16601a2b362b27bb5192d6b60\AndroidManifest.xml:20:5-44
+MERGED from [androidx.vectordrawable:vectordrawable-animated:1.0.0] C:\Users\machenike\.gradle\wrapper\dists\gradle-4.6-all\caches\transforms-2\files-2.1\0470aa81cd92eae922a374f0aeec1a94\AndroidManifest.xml:20:5-44
+MERGED from [androidx.vectordrawable:vectordrawable-animated:1.0.0] C:\Users\machenike\.gradle\wrapper\dists\gradle-4.6-all\caches\transforms-2\files-2.1\0470aa81cd92eae922a374f0aeec1a94\AndroidManifest.xml:20:5-44
+MERGED from [androidx.legacy:legacy-support-core-ui:1.0.0] C:\Users\machenike\.gradle\wrapper\dists\gradle-4.6-all\caches\transforms-2\files-2.1\4bc014a3a6e2cf436e10db50d7634e80\AndroidManifest.xml:20:5-44
+MERGED from [androidx.legacy:legacy-support-core-ui:1.0.0] C:\Users\machenike\.gradle\wrapper\dists\gradle-4.6-all\caches\transforms-2\files-2.1\4bc014a3a6e2cf436e10db50d7634e80\AndroidManifest.xml:20:5-44
+MERGED from [androidx.legacy:legacy-support-core-utils:1.0.0] C:\Users\machenike\.gradle\wrapper\dists\gradle-4.6-all\caches\transforms-2\files-2.1\de1118f2fa37fd932881662052703413\AndroidManifest.xml:20:5-44
+MERGED from [androidx.legacy:legacy-support-core-utils:1.0.0] C:\Users\machenike\.gradle\wrapper\dists\gradle-4.6-all\caches\transforms-2\files-2.1\de1118f2fa37fd932881662052703413\AndroidManifest.xml:20:5-44
+MERGED from [androidx.transition:transition:1.0.0] C:\Users\machenike\.gradle\wrapper\dists\gradle-4.6-all\caches\transforms-2\files-2.1\0430ea2db01567a385e7477bdeade315\AndroidManifest.xml:20:5-44
+MERGED from [androidx.transition:transition:1.0.0] C:\Users\machenike\.gradle\wrapper\dists\gradle-4.6-all\caches\transforms-2\files-2.1\0430ea2db01567a385e7477bdeade315\AndroidManifest.xml:20:5-44
+MERGED from [androidx.cardview:cardview:1.0.0] C:\Users\machenike\.gradle\wrapper\dists\gradle-4.6-all\caches\transforms-2\files-2.1\4d5d6af10e8408d9b5ddb8f540d7714f\AndroidManifest.xml:20:5-44
+MERGED from [androidx.cardview:cardview:1.0.0] C:\Users\machenike\.gradle\wrapper\dists\gradle-4.6-all\caches\transforms-2\files-2.1\4d5d6af10e8408d9b5ddb8f540d7714f\AndroidManifest.xml:20:5-44
+MERGED from [androidx.vectordrawable:vectordrawable:1.0.1] C:\Users\machenike\.gradle\wrapper\dists\gradle-4.6-all\caches\transforms-2\files-2.1\523b115fbb70a5514ed0f642484bd284\AndroidManifest.xml:20:5-44
+MERGED from [androidx.vectordrawable:vectordrawable:1.0.1] C:\Users\machenike\.gradle\wrapper\dists\gradle-4.6-all\caches\transforms-2\files-2.1\523b115fbb70a5514ed0f642484bd284\AndroidManifest.xml:20:5-44
+MERGED from [androidx.viewpager:viewpager:1.0.0] C:\Users\machenike\.gradle\wrapper\dists\gradle-4.6-all\caches\transforms-2\files-2.1\ea3060eeb596c397069bf1520af36292\AndroidManifest.xml:20:5-44
+MERGED from [androidx.viewpager:viewpager:1.0.0] C:\Users\machenike\.gradle\wrapper\dists\gradle-4.6-all\caches\transforms-2\files-2.1\ea3060eeb596c397069bf1520af36292\AndroidManifest.xml:20:5-44
+MERGED from [androidx.coordinatorlayout:coordinatorlayout:1.0.0] C:\Users\machenike\.gradle\wrapper\dists\gradle-4.6-all\caches\transforms-2\files-2.1\449bf5d155f5c3d3a2c9c28e1f971f52\AndroidManifest.xml:20:5-44
+MERGED from [androidx.coordinatorlayout:coordinatorlayout:1.0.0] C:\Users\machenike\.gradle\wrapper\dists\gradle-4.6-all\caches\transforms-2\files-2.1\449bf5d155f5c3d3a2c9c28e1f971f52\AndroidManifest.xml:20:5-44
+MERGED from [androidx.drawerlayout:drawerlayout:1.0.0] C:\Users\machenike\.gradle\wrapper\dists\gradle-4.6-all\caches\transforms-2\files-2.1\9b48b83b4c1dbc36f20c3b6660bb4f35\AndroidManifest.xml:20:5-44
+MERGED from [androidx.drawerlayout:drawerlayout:1.0.0] C:\Users\machenike\.gradle\wrapper\dists\gradle-4.6-all\caches\transforms-2\files-2.1\9b48b83b4c1dbc36f20c3b6660bb4f35\AndroidManifest.xml:20:5-44
+MERGED from [androidx.slidingpanelayout:slidingpanelayout:1.0.0] C:\Users\machenike\.gradle\wrapper\dists\gradle-4.6-all\caches\transforms-2\files-2.1\1f015fb28a6b9457bc9358648cd26508\AndroidManifest.xml:20:5-44
+MERGED from [androidx.slidingpanelayout:slidingpanelayout:1.0.0] C:\Users\machenike\.gradle\wrapper\dists\gradle-4.6-all\caches\transforms-2\files-2.1\1f015fb28a6b9457bc9358648cd26508\AndroidManifest.xml:20:5-44
+MERGED from [androidx.customview:customview:1.0.0] C:\Users\machenike\.gradle\wrapper\dists\gradle-4.6-all\caches\transforms-2\files-2.1\6f7b8b3a1fb2ad66a9f4d398047aa65a\AndroidManifest.xml:20:5-44
+MERGED from [androidx.customview:customview:1.0.0] C:\Users\machenike\.gradle\wrapper\dists\gradle-4.6-all\caches\transforms-2\files-2.1\6f7b8b3a1fb2ad66a9f4d398047aa65a\AndroidManifest.xml:20:5-44
+MERGED from [androidx.swiperefreshlayout:swiperefreshlayout:1.0.0] C:\Users\machenike\.gradle\wrapper\dists\gradle-4.6-all\caches\transforms-2\files-2.1\3a6fe1e8ca091174bc5a700b0e78c64c\AndroidManifest.xml:20:5-44
+MERGED from [androidx.swiperefreshlayout:swiperefreshlayout:1.0.0] C:\Users\machenike\.gradle\wrapper\dists\gradle-4.6-all\caches\transforms-2\files-2.1\3a6fe1e8ca091174bc5a700b0e78c64c\AndroidManifest.xml:20:5-44
+MERGED from [androidx.asynclayoutinflater:asynclayoutinflater:1.0.0] C:\Users\machenike\.gradle\wrapper\dists\gradle-4.6-all\caches\transforms-2\files-2.1\4c28cd25cfcc44691719efca777a1b0f\AndroidManifest.xml:20:5-44
+MERGED from [androidx.asynclayoutinflater:asynclayoutinflater:1.0.0] C:\Users\machenike\.gradle\wrapper\dists\gradle-4.6-all\caches\transforms-2\files-2.1\4c28cd25cfcc44691719efca777a1b0f\AndroidManifest.xml:20:5-44
+MERGED from [androidx.loader:loader:1.0.0] C:\Users\machenike\.gradle\wrapper\dists\gradle-4.6-all\caches\transforms-2\files-2.1\b4d4f515eaf84b8e1e3d35f72dbb24d9\AndroidManifest.xml:20:5-44
+MERGED from [androidx.loader:loader:1.0.0] C:\Users\machenike\.gradle\wrapper\dists\gradle-4.6-all\caches\transforms-2\files-2.1\b4d4f515eaf84b8e1e3d35f72dbb24d9\AndroidManifest.xml:20:5-44
+MERGED from [androidx.core:core:1.0.1] C:\Users\machenike\.gradle\wrapper\dists\gradle-4.6-all\caches\transforms-2\files-2.1\6159867cbf723a2ef472a4835a172d72\AndroidManifest.xml:20:5-44
+MERGED from [androidx.core:core:1.0.1] C:\Users\machenike\.gradle\wrapper\dists\gradle-4.6-all\caches\transforms-2\files-2.1\6159867cbf723a2ef472a4835a172d72\AndroidManifest.xml:20:5-44
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.0.0] C:\Users\machenike\.gradle\wrapper\dists\gradle-4.6-all\caches\transforms-2\files-2.1\16b4dda7e90b65648c29b8beb22d5719\AndroidManifest.xml:20:5-44
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.0.0] C:\Users\machenike\.gradle\wrapper\dists\gradle-4.6-all\caches\transforms-2\files-2.1\16b4dda7e90b65648c29b8beb22d5719\AndroidManifest.xml:20:5-44
+MERGED from [androidx.cursoradapter:cursoradapter:1.0.0] C:\Users\machenike\.gradle\wrapper\dists\gradle-4.6-all\caches\transforms-2\files-2.1\de4fda55dbe9e009d7c3bb5143e12cbc\AndroidManifest.xml:20:5-44
+MERGED from [androidx.cursoradapter:cursoradapter:1.0.0] C:\Users\machenike\.gradle\wrapper\dists\gradle-4.6-all\caches\transforms-2\files-2.1\de4fda55dbe9e009d7c3bb5143e12cbc\AndroidManifest.xml:20:5-44
+MERGED from [androidx.interpolator:interpolator:1.0.0] C:\Users\machenike\.gradle\wrapper\dists\gradle-4.6-all\caches\transforms-2\files-2.1\b604f36dc910f15dd2924e5533b6f65f\AndroidManifest.xml:20:5-44
+MERGED from [androidx.interpolator:interpolator:1.0.0] C:\Users\machenike\.gradle\wrapper\dists\gradle-4.6-all\caches\transforms-2\files-2.1\b604f36dc910f15dd2924e5533b6f65f\AndroidManifest.xml:20:5-44
+MERGED from [androidx.documentfile:documentfile:1.0.0] C:\Users\machenike\.gradle\wrapper\dists\gradle-4.6-all\caches\transforms-2\files-2.1\924346a64e329ffb7fc95ba9ec580c66\AndroidManifest.xml:20:5-44
+MERGED from [androidx.documentfile:documentfile:1.0.0] C:\Users\machenike\.gradle\wrapper\dists\gradle-4.6-all\caches\transforms-2\files-2.1\924346a64e329ffb7fc95ba9ec580c66\AndroidManifest.xml:20:5-44
+MERGED from [androidx.localbroadcastmanager:localbroadcastmanager:1.0.0] C:\Users\machenike\.gradle\wrapper\dists\gradle-4.6-all\caches\transforms-2\files-2.1\fe12e19dc7682e71f80dafbc761352f2\AndroidManifest.xml:20:5-44
+MERGED from [androidx.localbroadcastmanager:localbroadcastmanager:1.0.0] C:\Users\machenike\.gradle\wrapper\dists\gradle-4.6-all\caches\transforms-2\files-2.1\fe12e19dc7682e71f80dafbc761352f2\AndroidManifest.xml:20:5-44
+MERGED from [androidx.print:print:1.0.0] C:\Users\machenike\.gradle\wrapper\dists\gradle-4.6-all\caches\transforms-2\files-2.1\5514d7cec531069906b33f43f15dee1d\AndroidManifest.xml:20:5-44
+MERGED from [androidx.print:print:1.0.0] C:\Users\machenike\.gradle\wrapper\dists\gradle-4.6-all\caches\transforms-2\files-2.1\5514d7cec531069906b33f43f15dee1d\AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.0.0] C:\Users\machenike\.gradle\wrapper\dists\gradle-4.6-all\caches\transforms-2\files-2.1\9366ce1398a2397da6ee2436092c49db\AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.0.0] C:\Users\machenike\.gradle\wrapper\dists\gradle-4.6-all\caches\transforms-2\files-2.1\9366ce1398a2397da6ee2436092c49db\AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-runtime:2.0.0] C:\Users\machenike\.gradle\wrapper\dists\gradle-4.6-all\caches\transforms-2\files-2.1\e0f8ae7835693cc4031dc037ccdcd4c5\AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-runtime:2.0.0] C:\Users\machenike\.gradle\wrapper\dists\gradle-4.6-all\caches\transforms-2\files-2.1\e0f8ae7835693cc4031dc037ccdcd4c5\AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-livedata:2.0.0] C:\Users\machenike\.gradle\wrapper\dists\gradle-4.6-all\caches\transforms-2\files-2.1\94667b9efd8f140530ecbaa413dd97cd\AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-livedata:2.0.0] C:\Users\machenike\.gradle\wrapper\dists\gradle-4.6-all\caches\transforms-2\files-2.1\94667b9efd8f140530ecbaa413dd97cd\AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.0.0] C:\Users\machenike\.gradle\wrapper\dists\gradle-4.6-all\caches\transforms-2\files-2.1\eff04266a5cc702f4930386dd7a285da\AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.0.0] C:\Users\machenike\.gradle\wrapper\dists\gradle-4.6-all\caches\transforms-2\files-2.1\eff04266a5cc702f4930386dd7a285da\AndroidManifest.xml:20:5-44
+MERGED from [androidx.arch.core:core-runtime:2.0.0] C:\Users\machenike\.gradle\wrapper\dists\gradle-4.6-all\caches\transforms-2\files-2.1\4cae0c68e92b893301d63168fab2ecf6\AndroidManifest.xml:20:5-44
+MERGED from [androidx.arch.core:core-runtime:2.0.0] C:\Users\machenike\.gradle\wrapper\dists\gradle-4.6-all\caches\transforms-2\files-2.1\4cae0c68e92b893301d63168fab2ecf6\AndroidManifest.xml:20:5-44
+INJECTED from D:\ProjectSpace\ASproject\WenliApp\app\src\main\AndroidManifest.xml
+INJECTED from D:\ProjectSpace\ASproject\WenliApp\app\src\main\AndroidManifest.xml
+	android:targetSdkVersion
+		INJECTED from D:\ProjectSpace\ASproject\WenliApp\app\src\main\AndroidManifest.xml
+		ADDED from D:\ProjectSpace\ASproject\WenliApp\app\src\main\AndroidManifest.xml
+		INJECTED from D:\ProjectSpace\ASproject\WenliApp\app\src\main\AndroidManifest.xml
+	android:minSdkVersion
+		INJECTED from D:\ProjectSpace\ASproject\WenliApp\app\src\main\AndroidManifest.xml
+		ADDED from D:\ProjectSpace\ASproject\WenliApp\app\src\main\AndroidManifest.xml
+		INJECTED from D:\ProjectSpace\ASproject\WenliApp\app\src\main\AndroidManifest.xml
+uses-permission#android.permission.WRITE_EXTERNAL_STORAGE
+ADDED from [:updateapp] D:\ProjectSpace\ASproject\WenliApp\updateapp\build\intermediates\library_manifest\debug\AndroidManifest.xml:12:5-81
+	android:name
+		ADDED from [:updateapp] D:\ProjectSpace\ASproject\WenliApp\updateapp\build\intermediates\library_manifest\debug\AndroidManifest.xml:12:22-78
+uses-permission#android.permission.MOUNT_UNMOUNT_FILESYSTEMS
+ADDED from [:updateapp] D:\ProjectSpace\ASproject\WenliApp\updateapp\build\intermediates\library_manifest\debug\AndroidManifest.xml:18:5-84
+	android:name
+		ADDED from [:updateapp] D:\ProjectSpace\ASproject\WenliApp\updateapp\build\intermediates\library_manifest\debug\AndroidManifest.xml:18:22-81
+uses-permission#android.permission.MOUNT_FORMAT_FILESYSTEMS
+ADDED from [:updateapp] D:\ProjectSpace\ASproject\WenliApp\updateapp\build\intermediates\library_manifest\debug\AndroidManifest.xml:20:5-83
+	android:name
+		ADDED from [:updateapp] D:\ProjectSpace\ASproject\WenliApp\updateapp\build\intermediates\library_manifest\debug\AndroidManifest.xml:20:22-80
+uses-permission#android.permission.READ_EXTERNAL_STORAGE
+ADDED from [:updateapp] D:\ProjectSpace\ASproject\WenliApp\updateapp\build\intermediates\library_manifest\debug\AndroidManifest.xml:21:5-80
+	android:name
+		ADDED from [:updateapp] D:\ProjectSpace\ASproject\WenliApp\updateapp\build\intermediates\library_manifest\debug\AndroidManifest.xml:21:22-77
+uses-permission#android.permission.REQUEST_INSTALL_PACKAGES
+ADDED from [:updateapp] D:\ProjectSpace\ASproject\WenliApp\updateapp\build\intermediates\library_manifest\debug\AndroidManifest.xml:23:5-83
+	android:name
+		ADDED from [:updateapp] D:\ProjectSpace\ASproject\WenliApp\updateapp\build\intermediates\library_manifest\debug\AndroidManifest.xml:23:22-80
+provider#androidx.core.content.FileProvider
+ADDED from [:updateapp] D:\ProjectSpace\ASproject\WenliApp\updateapp\build\intermediates\library_manifest\debug\AndroidManifest.xml:29:9-37:20
+	android:grantUriPermissions
+		ADDED from [:updateapp] D:\ProjectSpace\ASproject\WenliApp\updateapp\build\intermediates\library_manifest\debug\AndroidManifest.xml:33:13-47
+	android:authorities
+		ADDED from [:updateapp] D:\ProjectSpace\ASproject\WenliApp\updateapp\build\intermediates\library_manifest\debug\AndroidManifest.xml:31:13-64
+	android:exported
+		ADDED from [:updateapp] D:\ProjectSpace\ASproject\WenliApp\updateapp\build\intermediates\library_manifest\debug\AndroidManifest.xml:32:13-37
+	android:name
+		ADDED from [:updateapp] D:\ProjectSpace\ASproject\WenliApp\updateapp\build\intermediates\library_manifest\debug\AndroidManifest.xml:30:13-62
+meta-data#android.support.FILE_PROVIDER_PATHS
+ADDED from [:updateapp] D:\ProjectSpace\ASproject\WenliApp\updateapp\build\intermediates\library_manifest\debug\AndroidManifest.xml:34:13-36:54
+	android:resource
+		ADDED from [:updateapp] D:\ProjectSpace\ASproject\WenliApp\updateapp\build\intermediates\library_manifest\debug\AndroidManifest.xml:36:17-51
+	android:name
+		ADDED from [:updateapp] D:\ProjectSpace\ASproject\WenliApp\updateapp\build\intermediates\library_manifest\debug\AndroidManifest.xml:35:17-67

@@ -3,7 +3,7 @@ package com.xiaohei.auser.wenliapp.studentActivity;
 import android.app.Dialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
+import androidx.annotation.Nullable;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -18,6 +18,7 @@ import com.xiaohei.auser.wenliapp.R;
 import com.xiaohei.auser.wenliapp.SuperActivity;
 import com.xiaohei.auser.wenliapp.dialog.XhDialog;
 import com.xiaohei.auser.wenliapp.dialog.XhSnackBar;
+import com.xiaohei.auser.wenliapp.utils.StatusBarFullTransparentTools;
 import com.xiaohei.auser.wenliapp.utils.XhLogUtil;
 import com.xiaohei.auser.wenliapp.wenlientity.NewBuild;
 import com.xiaohei.auser.wenliapp.wenlientity.NewClasses;
@@ -78,6 +79,12 @@ public class StudentRegisterActivity extends SuperActivity implements View.OnCli
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
+
+        /**
+         * 增加沉浸式
+         */
+        StatusBarFullTransparentTools.addAll(true,this);
+
         ButterKnife.bind(this);
         init();
         getDep(WenLiURL.QUERYALL_DEPARTMENT);

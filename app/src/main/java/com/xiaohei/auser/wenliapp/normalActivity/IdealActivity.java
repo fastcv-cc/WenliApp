@@ -4,8 +4,8 @@ import android.app.Activity;
 import android.app.Dialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.design.widget.Snackbar;
+import androidx.annotation.Nullable;
+import com.google.android.material.snackbar.Snackbar;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
@@ -24,6 +24,7 @@ import com.xiaohei.auser.wenliapp.net.WenLiURL;
 import com.xiaohei.auser.wenliapp.net.XhOkHttps;
 import com.xiaohei.auser.wenliapp.sp.SpConstants;
 import com.xiaohei.auser.wenliapp.sp.XhSp;
+import com.xiaohei.auser.wenliapp.utils.StatusBarFullTransparentTools;
 import com.xiaohei.auser.wenliapp.wenlientity.Result;
 
 import java.lang.reflect.Type;
@@ -61,6 +62,12 @@ public class IdealActivity extends Activity implements TextWatcher {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_myideal);
+
+        /**
+         * 增加沉浸式
+         */
+        StatusBarFullTransparentTools.addAll(true,this);
+
         ButterKnife.bind(this);
         mdialog = XhDialog.showLoadingDialog(IdealActivity.this,"正在发送...");
         content.addTextChangedListener(this);

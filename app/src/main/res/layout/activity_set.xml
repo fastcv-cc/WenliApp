@@ -2,6 +2,8 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    android:background="#1FBAF3"
     android:orientation="vertical" >
     
     <RelativeLayout 
@@ -12,7 +14,7 @@
         <RelativeLayout 
            android:layout_width="match_parent"
            android:layout_height="55sp"
-           android:background="#1FBAF3"
+
             >
 
             <ImageView
@@ -49,7 +51,8 @@
         
         <ListView 
             android:layout_width="match_parent"
-            android:layout_marginTop="65dp"
+            android:layout_marginTop="55dp"
+            android:background="#FFFFFF"
             android:layout_height="match_parent"
             android:id="@+id/setlist"
             android:divider="@null"

@@ -1,7 +1,7 @@
 package com.xiaohei.auser.wenliapp.studentActivity;
 
 import android.os.Bundle;
-import android.support.annotation.Nullable;
+import androidx.annotation.Nullable;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.RelativeLayout;
@@ -9,6 +9,7 @@ import android.widget.TextView;
 
 import com.xiaohei.auser.wenliapp.R;
 import com.xiaohei.auser.wenliapp.SuperActivity;
+import com.xiaohei.auser.wenliapp.utils.StatusBarFullTransparentTools;
 import com.xiaohei.auser.wenliapp.utils.Trans;
 import com.xiaohei.auser.wenliapp.wenlientity.NewWeektext;
 
@@ -52,6 +53,12 @@ public class ShowWeekActivity extends SuperActivity implements View.OnClickListe
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_student_showweek);
+
+        /**
+         * 增加沉浸式
+         */
+        StatusBarFullTransparentTools.addAll(true,this);
+
         ButterKnife.bind(this);
         week = (NewWeektext) getIntent().getExtras().getSerializable("week");
         initview();

@@ -3,7 +3,7 @@ package com.xiaohei.auser.wenliapp.utils;
 import android.Manifest;
 import android.app.Activity;
 import android.content.pm.PackageManager;
-import android.support.v4.app.ActivityCompat;
+import androidx.core.app.ActivityCompat;
 
 /**
  * Created by machenike on 2018/10/16.

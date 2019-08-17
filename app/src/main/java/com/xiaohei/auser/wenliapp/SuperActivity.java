@@ -5,8 +5,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
-import android.view.WindowManager;
+import androidx.appcompat.app.AppCompatActivity;
+
 import android.widget.Toast;
 
 /**
@@ -28,6 +28,8 @@ public class SuperActivity extends AppCompatActivity {
      */
     private MyReceiver receiver;
 
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,6 +39,8 @@ public class SuperActivity extends AppCompatActivity {
         filter.addAction(SYSTEM_EXIT);
         receiver = new MyReceiver();
         this.registerReceiver(receiver, filter);
+
+
     }
 
     @Override
@@ -54,12 +58,14 @@ public class SuperActivity extends AppCompatActivity {
         }
     }
 
+
     public void exit() {
         Intent intent = new Intent();
         intent.setAction(SuperActivity.SYSTEM_EXIT);
         sendBroadcast(intent);
     }
     long exitTime = 0;
+
     public void BackExit(){
         if ((System.currentTimeMillis() - exitTime) > 2000) {
             Toast.makeText(getApplicationContext(), "再按一次退出程序",

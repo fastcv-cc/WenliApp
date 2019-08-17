@@ -11,7 +11,6 @@ import android.preference.PreferenceManager;
  */
 
 public class XhSp {
-
     private static SharedPreferences msharedPreferences;
     private static SharedPreferences.Editor editor;
 

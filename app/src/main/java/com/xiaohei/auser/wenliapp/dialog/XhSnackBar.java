@@ -1,7 +1,7 @@
 package com.xiaohei.auser.wenliapp.dialog;
 
-import android.support.design.widget.Snackbar;
-import android.text.Layout;
+import com.google.android.material.snackbar.Snackbar;
+
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
